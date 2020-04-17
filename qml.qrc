@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/unit/ListLogRecords.qml</file>
+        <file>qml/unit/PText.qml</file>
+    </qresource>
+</RCC>
