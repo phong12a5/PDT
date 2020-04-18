@@ -7,7 +7,7 @@ AppModel* AppModel::m_instance = nullptr;
 
 AppModel::AppModel(QObject *parent) : QObject(parent)
 {
-    getLogFromServer();
+    LOGD << "Created";
 }
 
 AppModel *AppModel::instance()
@@ -25,9 +25,9 @@ QList<QObject *> AppModel::listLogRecord()
 
 void AppModel::getLogFromServer()
 {
+    LOGD << "";
     QList<QJsonObject> listRecord;
     WebAPI::instance()->getJasmineLog(listRecord);
-    LOGD << listRecord.length();
     if(!listRecord.isEmpty()) {
         qDeleteAll(m_listLogRecord);
         foreach(QJsonObject logObj , listRecord) {
@@ -35,6 +35,11 @@ void AppModel::getLogFromServer()
             emit listLogRecordChanged();
         }
     }
+}
+
+void AppModel::saveResult()
+{
+    LOGD << "";
 }
 
 

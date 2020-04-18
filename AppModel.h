@@ -34,8 +34,14 @@
 class ASBLTNode : public QObject {
 
     Q_OBJECT
-    Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
-    Q_PROPERTY(QString contentDescription READ contentDescription WRITE setContentDescription NOTIFY contentDescriptionChanged)
+    Q_PROPERTY(QString text                 READ text               WRITE setText               NOTIFY textChanged)
+    Q_PROPERTY(QString contentDescription   READ contentDescription WRITE setContentDescription NOTIFY contentDescriptionChanged)
+    Q_PROPERTY(QString className            READ className          WRITE setClassName          NOTIFY classNameChanged)
+    Q_PROPERTY(QString clickable            READ clickable          WRITE setClickable          NOTIFY clickableChanged)
+    Q_PROPERTY(QString checkable            READ checkable          WRITE setCheckable          NOTIFY checkableChanged)
+    Q_PROPERTY(QString checked              READ checked            WRITE setChecked            NOTIFY checkedChanged)
+    Q_PROPERTY(QString selected             READ selected           WRITE setSelected           NOTIFY selectedChanged)
+    Q_PROPERTY(QString visible              READ visible            WRITE setVisible            NOTIFY visibleChanged)
 public:
     explicit ASBLTNode(QString nodeStr) {
         QStringList listProp = nodeStr.split(";");
@@ -45,7 +51,6 @@ public:
                 QString propName = map.at(0).simplified();
                 QString value = map.at(1);
                 this->setProperty(propName.toLocal8Bit().data(),QVariant(value));
-//                LOGD << propName << " : " << property(propName.toLocal8Bit().data());
             }
         }
     }
@@ -53,25 +58,75 @@ public:
 private:
     QString m_text;
     QString m_contentDescription;
+    QString m_className;
+    QString m_clickable;
+    QString m_checkable;
+    QString m_checked  ;
+    QString m_selected ;
+    QString m_visible  ;
+
 
 public:
     QString text() const {return m_text;}
     void setText(QString text) {
-        LOGD << text;
         m_text = text;
         emit textChanged();
     }
 
     QString contentDescription() const {return  m_contentDescription;}
+    QString className() const {return m_className;}
+    QString clickable() const { return m_clickable;}
+    QString checkable() const { return m_checkable;}
+    QString checked  () const { return m_checked  ;}
+    QString selected () const { return m_selected ;}
+    QString visible  () const { return m_visible  ;}
+
     void setContentDescription(QString contentDescription) {
-        LOGD << contentDescription;
         m_contentDescription = contentDescription;
         emit contentDescriptionChanged();
     }
 
+    void setClassName(QString className) {
+        m_className = className;
+        emit classNameChanged();
+    }
+
+    void setClickable(QString clickable){
+        m_clickable = clickable;
+        emit clickableChanged();
+    }
+
+    void setCheckable(QString checkable){
+        m_checkable = checkable;
+        emit checkableChanged();
+    }
+
+    void setChecked  (QString checked){
+        m_checked = checked;
+        emit checkedChanged();
+    }
+
+    void setSelected (QString selected ){
+        m_selected = selected;
+        emit selectedChanged();
+    }
+
+    void setVisible  (QString visible){
+        m_visible = visible;
+        emit visibleChanged();
+    }
+
+
 signals:
     void textChanged();
     void contentDescriptionChanged();
+    void classNameChanged();
+    void clickableChanged();
+    void checkableChanged();
+    void checkedChanged();
+    void selectedChanged();
+    void visibleChanged();
+
 };
 
 class LogElement: public QObject
@@ -132,11 +187,11 @@ public:
             qDeleteAll(m_acsblNodeList);
 
             CkJsonArray arr;
-            arr.Load(m_acsblNodeListStr.toLocal8Bit().data());
+            arr.put_Utf8(true);
+            arr.Load(m_acsblNodeListStr.toUtf8().data());
             for (int i = 0; i < arr.get_Size(); i ++) {
                 m_acsblNodeList.append(new ASBLTNode(arr.stringAt(i)));
             }
-            LOGD << "m_acsblNodeList size: " << m_acsblNodeList.size();
         }
     }
 
@@ -183,6 +238,7 @@ public:
 
 public:
     Q_INVOKABLE void getLogFromServer();
+    Q_INVOKABLE void saveResult();
 
 signals:
     void listLogRecordChanged();
