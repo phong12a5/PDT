@@ -46,7 +46,7 @@ Window {
 
     ProcessorPage{
         id: processorPage
-        info: listRecord.count > 0? AppModel.listLogRecord[listRecord.currentIndex] : undefined
+        info: opacity == 0? undefined : listRecord.count > 0? AppModel.listLogRecord[listRecord.currentIndex] : undefined
         anchors.centerIn: parent
         width: parent.width
         height: parent.height

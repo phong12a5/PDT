@@ -7,6 +7,58 @@ Rectangle {
     opacity: 0
 
     property var info
+    property int currentTab: _COLLECT_EVIDENCE_TAB
+    property int _COLLECT_EVIDENCE_TAB: 0
+    property int _COLLECT_KEYWORD_TAB: 1
+
+    signal resetCheckState()
+
+    Item{
+        id: tabMenu
+        width: parent.width
+        height: 40
+        Rectangle{
+            width: parent.width/2
+            height: parent.height
+            color: currentTab == _COLLECT_EVIDENCE_TAB? "#32CD32" : "white"
+            Text {
+                anchors.centerIn: parent
+                text: qsTr("Collect Evidencess")
+                color: currentTab == _COLLECT_EVIDENCE_TAB? "white" : "black"
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    currentTab = _COLLECT_EVIDENCE_TAB
+                }
+            }
+        }
+        Rectangle{
+            width: parent.width/2
+            height: parent.height
+            anchors.right: parent.right
+            color: currentTab == _COLLECT_KEYWORD_TAB? "#32CD32" : "white"
+            Text {
+                anchors.centerIn: parent
+                text: qsTr("Collect Keywords")
+                color: currentTab == _COLLECT_KEYWORD_TAB? "white" : "black"
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    currentTab = _COLLECT_KEYWORD_TAB
+                }
+            }
+        }
+        Rectangle{
+            width: parent.width
+            height: 2
+            anchors.bottom: parent.bottom
+            color: "#32CD32"
+        }
+    }
+
+
 
     ListView {
         id: nodeList
@@ -17,7 +69,8 @@ Rectangle {
             leftMargin: 10
             right: parent.right
             rightMargin: 10
-            top: parent.top
+            top: tabMenu.bottom
+            topMargin: 5
             bottom: parent.bottom
             bottomMargin: 150
         }
@@ -27,11 +80,12 @@ Rectangle {
             property bool isSelected: selectCheckbox.checkState == Qt.Checked
 
             width: parent.width
-            height: 50
+            height: 30
             ASBLNodeItem {
                 id: node
                 height: parent.height
                 width: parent.width
+                enableKeywordInput: currentTab == _COLLECT_KEYWORD_TAB
             }
 
             CheckBox{
@@ -39,7 +93,14 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.right
                 anchors.horizontalCenterOffset: -50/2
-                indicator.width: 25
+                indicator.width: 20
+                indicator.height: 20
+                Connections{
+                    target: root
+                    onCurrentTabChanged: {
+                        selectCheckbox.checkState = Qt.Unchecked
+                    }
+                }
             }
         }
     }
@@ -89,19 +150,21 @@ Rectangle {
 
     PButton{
         id: saveBtn
-        text: "Save"
+        text: currentTab == _COLLECT_EVIDENCE_TAB ?"Save Evidences" : "Save Keywords"
         enabled: getListSelectedItem().length > 0 &&
                  pageIDInput.text.length > 0 &&
                  langInput.currentText !== "Unknown" &&
                  langInput.currentIndex !== ""
-        width: 60
+        width: 150
         height: 40
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked: {
-            AppModel.updateJamineDefinations(pageIDInput.text,langInput.currentText,getListSelectedItem());
-            root.hide()
+            if(currentTab == _COLLECT_EVIDENCE_TAB)
+                AppModel.updateJamineDefinations(pageIDInput.text,langInput.currentText,getListSelectedItem());
+            else
+                AppModel.updateJamineKeyword(pageIDInput.text,langInput.currentText,getListSelectedItem());
         }
     }
 

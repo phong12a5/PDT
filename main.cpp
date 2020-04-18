@@ -47,7 +47,7 @@ bool unlockChilkat() {
 
     int status = glob.get_UnlockStatus();
     if (status == 2) {
-        return false;
+        return true;
     } else {
         return false;
     }

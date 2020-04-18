@@ -113,15 +113,39 @@ void AppModel::updateJamineDefinations(QString pageID, QString language, QList<Q
             evidenceItem.insert("contentDescription",static_cast<ASBLTNode*>(nodeList.at(i))->contentDescription());
             evidenceItem.insert("className",static_cast<ASBLTNode*>(nodeList.at(i))->className());
             evidenceItem.insert("clickable",static_cast<ASBLTNode*>(nodeList.at(i))->clickable() == "true"? true : false);
-            evidenceItem.insert("checkable",static_cast<ASBLTNode*>(nodeList.at(i))->checkable() == "true"? true : false);
             evidenceItem.insert("checked",static_cast<ASBLTNode*>(nodeList.at(i))->checked() == "true"? true : false);
             evidenceItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected() == "true"? true : false);
-            evidenceItem.insert("visible",static_cast<ASBLTNode*>(nodeList.at(i))->visible() == "true"? true : false);
             newEvidence.append(evidenceItem);
         }
         arrEdidenceByLange.append(newEvidence);
         definationsField.insert(language,arrEdidenceByLange);
         pageObj.insert("definitons",definationsField);
+        insertPageDefinations(pageObj);
+    }
+}
+
+void AppModel::updateJamineKeyword(QString pageID, QString language, QList<QObject *> nodeList)
+{
+    LOGD << "pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
+    if(LANG_MAP.contains(language)){
+        QJsonObject pageObj = this->getPageDefinations(pageID);
+        QJsonObject keywordsField = pageObj.value("keywords").toObject();
+        QJsonArray arrKeywordByLang = keywordsField[language].toArray();
+        for (int i = 0; i < nodeList.length(); i++) {
+            QJsonObject keywordItem;
+            keywordItem.insert("text",static_cast<ASBLTNode*>(nodeList.at(i))->text());
+            keywordItem.insert("contentDescription",static_cast<ASBLTNode*>(nodeList.at(i))->contentDescription());
+            keywordItem.insert("className",static_cast<ASBLTNode*>(nodeList.at(i))->className());
+            keywordItem.insert("clickable",static_cast<ASBLTNode*>(nodeList.at(i))->clickable() == "true"? true : false);
+            keywordItem.insert("checked",static_cast<ASBLTNode*>(nodeList.at(i))->checked() == "true"? true : false);
+            keywordItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected() == "true"? true : false);
+            keywordItem.insert("keyword",static_cast<ASBLTNode*>(nodeList.at(i))->keyword());
+            if(!arrKeywordByLang.contains(keywordItem))
+                arrKeywordByLang.append(keywordItem);
+        }
+        keywordsField.insert(language,arrKeywordByLang);
+        pageObj.insert("keywords",keywordsField);
+
         insertPageDefinations(pageObj);
     }
 }

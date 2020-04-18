@@ -38,10 +38,10 @@ class ASBLTNode : public QObject {
     Q_PROPERTY(QString contentDescription   READ contentDescription WRITE setContentDescription NOTIFY contentDescriptionChanged)
     Q_PROPERTY(QString className            READ className          WRITE setClassName          NOTIFY classNameChanged)
     Q_PROPERTY(QString clickable            READ clickable          WRITE setClickable          NOTIFY clickableChanged)
-    Q_PROPERTY(QString checkable            READ checkable          WRITE setCheckable          NOTIFY checkableChanged)
     Q_PROPERTY(QString checked              READ checked            WRITE setChecked            NOTIFY checkedChanged)
     Q_PROPERTY(QString selected             READ selected           WRITE setSelected           NOTIFY selectedChanged)
-    Q_PROPERTY(QString visible              READ visible            WRITE setVisible            NOTIFY visibleChanged)
+    Q_PROPERTY(QString keyword              READ keyword            WRITE setKeyword            NOTIFY keywordChanged)
+
 public:
     explicit ASBLTNode(QString nodeStr) {
         QStringList listProp = nodeStr.split(";");
@@ -60,26 +60,23 @@ private:
     QString m_contentDescription;
     QString m_className;
     QString m_clickable;
-    QString m_checkable;
     QString m_checked  ;
     QString m_selected ;
-    QString m_visible  ;
-
+    QString m_keyword;
 
 public:
     QString text() const {return m_text;}
+    QString contentDescription() const {return  m_contentDescription;}
+    QString className() const { return m_className;}
+    QString clickable() const { return m_clickable;}
+    QString checked  () const { return m_checked  ;}
+    QString selected () const { return m_selected ;}
+    QString keyword  () const { return m_keyword ;}
+
     void setText(QString text) {
         m_text = text;
         emit textChanged();
     }
-
-    QString contentDescription() const {return  m_contentDescription;}
-    QString className() const {return m_className;}
-    QString clickable() const { return m_clickable;}
-    QString checkable() const { return m_checkable;}
-    QString checked  () const { return m_checked  ;}
-    QString selected () const { return m_selected ;}
-    QString visible  () const { return m_visible  ;}
 
     void setContentDescription(QString contentDescription) {
         m_contentDescription = contentDescription;
@@ -96,11 +93,6 @@ public:
         emit clickableChanged();
     }
 
-    void setCheckable(QString checkable){
-        m_checkable = checkable;
-        emit checkableChanged();
-    }
-
     void setChecked  (QString checked){
         m_checked = checked;
         emit checkedChanged();
@@ -111,22 +103,19 @@ public:
         emit selectedChanged();
     }
 
-    void setVisible  (QString visible){
-        m_visible = visible;
-        emit visibleChanged();
+    void setKeyword(QString keyword) {
+        m_keyword = keyword;
+        emit keywordChanged();
     }
-
 
 signals:
     void textChanged();
     void contentDescriptionChanged();
     void classNameChanged();
     void clickableChanged();
-    void checkableChanged();
     void checkedChanged();
     void selectedChanged();
-    void visibleChanged();
-
+    void keywordChanged();
 };
 
 class LogElement: public QObject
@@ -248,6 +237,7 @@ public:
     Q_INVOKABLE void saveResult();
     Q_INVOKABLE void getJamineDefinations();
     Q_INVOKABLE void updateJamineDefinations(QString pageID, QString language, QList<QObject*> nodeList);
+    Q_INVOKABLE void updateJamineKeyword(QString pageID, QString language, QList<QObject*> nodeList);
 
 signals:
     void listLogRecordChanged();
