@@ -6,5 +6,6 @@
         <file>qml/unit/PButton.qml</file>
         <file>qml/unit/ProcessorPage.qml</file>
         <file>qml/unit/ASBLNodeItem.qml</file>
+        <file>qml/unit/PageIDInput.qml</file>
     </qresource>
 </RCC>

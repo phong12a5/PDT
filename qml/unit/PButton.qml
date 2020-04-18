@@ -8,7 +8,7 @@ Button {
     contentItem: Text {
         text: control.text
         font: control.font
-        opacity: enabled ? 1.0 : 0.7
+        opacity: enabled ? 1.0 : 0.5
         color: control.down ? "#20B2AA" : "#4169E1"
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -18,7 +18,7 @@ Button {
     background: Rectangle {
         implicitWidth: 100
         implicitHeight: 40
-        opacity: enabled ? 1 : 0.7
+        opacity: enabled ? 1 : 0.5
         border.color: control.down ? "#20B2AA" : "#4169E1"
         border.width: 2
         radius: 2

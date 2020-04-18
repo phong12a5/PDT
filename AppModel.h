@@ -230,23 +230,35 @@ class AppModel : public QObject
 private:
     explicit AppModel(QObject *parent = nullptr);
     Q_PROPERTY(QList<QObject*> listLogRecord READ listLogRecord NOTIFY listLogRecordChanged)
-
+    Q_PROPERTY(QStringList listPageID READ listPageID NOTIFY listPageIDChanged)
+    Q_PROPERTY(QStringList listLanguage READ listLanguage NOTIFY listLanguageChanged)
 public:
     static AppModel* instance();
 
     QList<QObject*> listLogRecord();
+    QStringList listPageID() const;
+    QStringList listLanguage() const;
+
+private:
+    void insertPageDefinations(QJsonObject pageObj);
+    QJsonObject getPageDefinations(QString pageID);
 
 public:
     Q_INVOKABLE void getLogFromServer();
     Q_INVOKABLE void saveResult();
+    Q_INVOKABLE void getJamineDefinations();
+    Q_INVOKABLE void updateJamineDefinations(QString pageID, QString language, QList<QObject*> nodeList);
 
 signals:
     void listLogRecordChanged();
+    void listPageIDChanged();
+    void listLanguageChanged();
 
 private:
     static AppModel* m_instance;
 
     QList<QObject*> m_listLogRecord;
+    QMap<QString, QJsonObject> m_definationMap;
 
 public slots:
 };

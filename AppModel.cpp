@@ -2,6 +2,7 @@
 #include "WebAPI.hpp"
 #include <QJsonDocument>
 #include <QString>
+#include <QMessageBox>
 
 AppModel* AppModel::m_instance = nullptr;
 
@@ -23,6 +24,29 @@ QList<QObject *> AppModel::listLogRecord()
     return m_listLogRecord;
 }
 
+QStringList AppModel::listPageID() const
+{
+    return  m_definationMap.keys();
+}
+
+QStringList AppModel::listLanguage() const
+{
+    return LANG_MAP.keys();
+}
+
+void AppModel::insertPageDefinations(QJsonObject pageObj)
+{
+    if(!pageObj.isEmpty()) {
+        m_definationMap.insert(pageObj.value("page").toString(),pageObj);
+        emit listPageIDChanged();
+    }
+}
+
+QJsonObject AppModel::getPageDefinations(QString pageID)
+{
+    return m_definationMap.value(pageID);
+}
+
 void AppModel::getLogFromServer()
 {
     LOGD << "";
@@ -40,6 +64,66 @@ void AppModel::getLogFromServer()
 void AppModel::saveResult()
 {
     LOGD << "";
+    QJsonArray defArr;
+    foreach (QString pageID, m_definationMap.keys()) {
+        defArr.append(m_definationMap.value(pageID));
+    }
+    if(!defArr.isEmpty()) {
+        WebAPI::instance()->saveJamineDefinations(defArr);
+    }
+}
+
+void AppModel::getJamineDefinations()
+{
+    QString defStr;
+    WebAPI::instance()->getJamineDefinations(defStr);
+    QJsonDocument defDoc = QJsonDocument::fromJson(defStr.toUtf8());
+    if(defDoc.isArray()) {
+        QJsonArray defArr = defDoc.array();
+        for (int i = 0; i < defArr.size(); i++) {
+            QJsonObject pageObj = defArr.at(i).toObject();
+            if(pageObj.isEmpty()) {
+                QMessageBox Msgbox;
+                Msgbox.setText("Load Jasmine configuration json file failure!" + defArr.at(i).toString());
+                Msgbox.exec();
+            }else {
+                insertPageDefinations(pageObj);
+            }
+        }
+    } else {
+        LOGD << "defDoc is not array";
+        QMessageBox Msgbox;
+        Msgbox.setText("Load Jasmine configuration json file failure!" + defStr);
+        Msgbox.exec();
+    }
+
+}
+
+void AppModel::updateJamineDefinations(QString pageID, QString language, QList<QObject *> nodeList)
+{
+    LOGD << "pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
+    if(LANG_MAP.contains(language)){
+        QJsonObject pageObj = this->getPageDefinations(pageID);
+        QJsonObject definationsField = pageObj.value("definitons").toObject();
+        QJsonArray arrEdidenceByLange = definationsField[language].toArray();
+        QJsonArray newEvidence;
+        for (int i = 0; i < nodeList.length(); i++) {
+            QJsonObject evidenceItem;
+            evidenceItem.insert("text",static_cast<ASBLTNode*>(nodeList.at(i))->text());
+            evidenceItem.insert("contentDescription",static_cast<ASBLTNode*>(nodeList.at(i))->contentDescription());
+            evidenceItem.insert("className",static_cast<ASBLTNode*>(nodeList.at(i))->className());
+            evidenceItem.insert("clickable",static_cast<ASBLTNode*>(nodeList.at(i))->clickable() == "true"? true : false);
+            evidenceItem.insert("checkable",static_cast<ASBLTNode*>(nodeList.at(i))->checkable() == "true"? true : false);
+            evidenceItem.insert("checked",static_cast<ASBLTNode*>(nodeList.at(i))->checked() == "true"? true : false);
+            evidenceItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected() == "true"? true : false);
+            evidenceItem.insert("visible",static_cast<ASBLTNode*>(nodeList.at(i))->visible() == "true"? true : false);
+            newEvidence.append(evidenceItem);
+        }
+        arrEdidenceByLange.append(newEvidence);
+        definationsField.insert(language,arrEdidenceByLange);
+        pageObj.insert("definitons",definationsField);
+        insertPageDefinations(pageObj);
+    }
 }
 
 

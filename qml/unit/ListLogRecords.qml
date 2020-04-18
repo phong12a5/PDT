@@ -13,7 +13,7 @@ ListView {
         width: parent.width
         height: 300
         clip: true
-        PText{
+        PText {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 10

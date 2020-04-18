@@ -8,7 +8,7 @@ Window {
     title: "Phong Đẹp Trai"
     visible: true
     width: 1300
-    height: 600
+    height: 700
 
     ListLogRecords{
         id: listRecord
@@ -52,4 +52,6 @@ Window {
         height: parent.height
         visible: opacity == 0? false : true
     }
+
+    Component.onCompleted: showMaximized()
 }
