@@ -95,6 +95,7 @@ Rectangle {
                 anchors.horizontalCenterOffset: -50/2
                 indicator.width: 20
                 indicator.height: 20
+                enabled:  currentTab == _COLLECT_KEYWORD_TAB ? modelData.keyword !== "" : true
                 Connections{
                     target: root
                     onCurrentTabChanged: {

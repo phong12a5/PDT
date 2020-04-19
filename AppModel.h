@@ -170,10 +170,11 @@ public:
         if(logJObj.contains("page")){
             m_page = logJObj.value("page").toString();
         }
-        if(logJObj.contains("message")){
-            m_acsblNodeListStr = logJObj.value("message").toString();
+        if(logJObj.contains("screenInfo")){
+            m_acsblNodeListStr = logJObj.value("screenInfo").toString();
             QJsonArray array = QJsonDocument::fromJson(m_acsblNodeListStr.toLocal8Bit()).array();
             qDeleteAll(m_acsblNodeList);
+            m_acsblNodeList.clear();
 
             CkJsonArray arr;
             arr.put_Utf8(true);

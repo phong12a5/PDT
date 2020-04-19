@@ -69,6 +69,7 @@ void AppModel::saveResult()
     foreach (QString pageID, m_definationMap.keys()) {
         defArr.append(m_definationMap.value(pageID));
     }
+    LOGD << "pageObj: " << defArr;
     if(!defArr.isEmpty()) {
         WebAPI::instance()->saveJamineDefinations(defArr);
     }
@@ -117,10 +118,12 @@ void AppModel::updateJamineDefinations(QString pageID, QString language, QList<Q
             evidenceItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected() == "true"? true : false);
             newEvidence.append(evidenceItem);
         }
-        arrEdidenceByLange.append(newEvidence);
+        if(!arrEdidenceByLange.contains(newEvidence))
+            arrEdidenceByLange.append(newEvidence);
         definationsField.insert(language,arrEdidenceByLange);
         pageObj.insert("definitons",definationsField);
         pageObj.insert("page",pageID);
+        LOGD << "pageObj: " << pageObj;
         insertPageDefinations(pageObj);
     }
 }
@@ -147,6 +150,7 @@ void AppModel::updateJamineKeyword(QString pageID, QString language, QList<QObje
         keywordsField.insert(language,arrKeywordByLang);
         pageObj.insert("keywords",keywordsField);
         pageObj.insert("page",pageID);
+        LOGD << "pageObj: " << pageObj;
         insertPageDefinations(pageObj);
     }
 }
