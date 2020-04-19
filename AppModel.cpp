@@ -54,6 +54,7 @@ void AppModel::getLogFromServer()
     WebAPI::instance()->getJasmineLog(listRecord);
     if(!listRecord.isEmpty()) {
         qDeleteAll(m_listLogRecord);
+        m_listLogRecord.clear();
         foreach(QJsonObject logObj , listRecord) {
             m_listLogRecord.append(new LogElement(logObj));
             emit listLogRecordChanged();
@@ -96,7 +97,6 @@ void AppModel::getJamineDefinations()
         Msgbox.setText("Load Jasmine configuration json file failure!" + defStr);
         Msgbox.exec();
     }
-
 }
 
 void AppModel::updateJamineDefinations(QString pageID, QString language, QList<QObject *> nodeList)
@@ -120,6 +120,7 @@ void AppModel::updateJamineDefinations(QString pageID, QString language, QList<Q
         arrEdidenceByLange.append(newEvidence);
         definationsField.insert(language,arrEdidenceByLange);
         pageObj.insert("definitons",definationsField);
+        pageObj.insert("page",pageID);
         insertPageDefinations(pageObj);
     }
 }
@@ -145,7 +146,7 @@ void AppModel::updateJamineKeyword(QString pageID, QString language, QList<QObje
         }
         keywordsField.insert(language,arrKeywordByLang);
         pageObj.insert("keywords",keywordsField);
-
+        pageObj.insert("page",pageID);
         insertPageDefinations(pageObj);
     }
 }

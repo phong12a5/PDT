@@ -143,6 +143,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
             LOGD << "resp->bodyStr() is NULL";
         }
     }
+    LOGD << "DONE";
 }
 
 void WebAPI::getJamineDefinations(QString &definations)
