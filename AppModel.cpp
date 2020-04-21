@@ -94,6 +94,7 @@ void AppModel::getJamineDefinations()
         }
     } else {
         LOGD << "defDoc is not array";
+
         QMessageBox Msgbox;
         Msgbox.setText("Load Jasmine configuration json file failure!" + defStr);
         Msgbox.exec();

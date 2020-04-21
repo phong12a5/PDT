@@ -81,7 +81,7 @@ Rectangle {
             id: deleg
 
             property bool isSelected: selectCheckbox.checkState == Qt.Checked
-
+            property var model: modelData
             width: parent.width
             height: 30
             ASBLNodeItem {
@@ -202,8 +202,9 @@ Rectangle {
         for(var i = 0; i < nodeList.contentItem.children.length; i++ ){
             if(nodeList.contentItem.children[i] !== undefined &&
                     nodeList.contentItem.children[i].isSelected)
-                selectedItems.push(nodeList.contentItem.children.modelData)
+                selectedItems.push(nodeList.contentItem.children[i].model)
         }
+
         return selectedItems;
     }
 

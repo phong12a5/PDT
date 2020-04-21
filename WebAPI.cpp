@@ -109,7 +109,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
     QJsonObject json;
 
     json.insert("action", "GetJasmine");
-    json.insert("token", "1bba41b4a6171a82b23b2cfb85ebefea");
+    json.insert("token", "emk0wteqlmgawdrhzn18u");
 
     QByteArray jsonData = QJsonDocument(json).toJson();
 
@@ -149,7 +149,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
 void WebAPI::getJamineDefinations(QString &definations)
 {
     LOGD << "";
-    QString url = "https://api.autofarmer.net/api3/config?token=1bba41b4a6171a82b23b2cfb85ebefea";
+    QString url = "https://api.autofarmer.net/api3/config?token=emk0wteqlmgawdrhzn18u";
     QJsonObject json;
 
     KEY_PAIR keyPair = getDynamicKey();
@@ -207,7 +207,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 {
     QString defArrStr = QJsonDocument(defArr).toJson();
     LOGD << "";
-    QString url = "https://api.autofarmer.net/api3/config?token=1bba41b4a6171a82b23b2cfb85ebefea";
+    QString url = "https://api.autofarmer.net/api3/config?token=emk0wteqlmgawdrhzn18u";
     QJsonObject json;
 
     KEY_PAIR keyPair = getDynamicKey();
@@ -228,6 +228,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
         LOGD << "Http error: " + QString(http.lastErrorText());
     } else {
         if (resp->bodyStr()) {
+
             CkJsonObject jsonResponse;
             bool loadJson = jsonResponse.Load(resp->bodyStr());
             if (loadJson) {
@@ -238,13 +239,15 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
                         std::string key = std::string(KEY_PREFIX) + serverTimeStamp + serverTimeStamp;
                         key = key.substr(0,32);
                         std::string result = this->decrypt(jsonResponse.stringOf("data"),key.data(), this->getIv());
-                        std::cout << "result: " << result;
+                        LOGD << "result: " << QByteArray::fromBase64(result.data());
                     }else {
                         LOGD << "Could not get server_timestamp";
                     }
                 } else {
                     LOGD << "Data field is not existed!";
                 }
+            } else {
+                LOGD << "Load responsed failed";
             }
         } else {
             LOGD << "resp->bodyStr() is NULL";
