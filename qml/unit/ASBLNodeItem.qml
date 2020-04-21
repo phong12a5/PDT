@@ -29,6 +29,8 @@ Rectangle {
  * importantForAccessibility:
  * true; visible: true;*/
     property QtObject nodeData: modelData
+    property bool enableKeywordInput: false
+    property string text: nodeData.keyword
     property var propNameList:
         [{propName:"text", value : modelData.text},
         {propName:"contentDescription", value : modelData.contentDescription},
@@ -38,7 +40,6 @@ Rectangle {
         {propName:"selected", value : modelData.selected},
         {propName:"keyword", value : ""}]
 
-    property bool enableKeywordInput: false
 
     signal keywordChanged(var keyword)
 

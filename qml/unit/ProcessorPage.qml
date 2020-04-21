@@ -12,6 +12,9 @@ Rectangle {
     property int _COLLECT_KEYWORD_TAB: 1
 
     signal resetCheckState()
+    MouseArea{
+        anchors.fill: parent
+    }
 
     Item{
         id: tabMenu
@@ -86,6 +89,13 @@ Rectangle {
                 height: parent.height
                 width: parent.width
                 enableKeywordInput: currentTab == _COLLECT_KEYWORD_TAB
+                onTextChanged: {
+                    if(text != "" && text != undefined){
+                        selectCheckbox.checkState = Qt.Checked
+                    } else {
+                        selectCheckbox.checkState = Qt.Unchecked
+                    }
+                }
             }
 
             CheckBox{
@@ -155,7 +165,7 @@ Rectangle {
         enabled: getListSelectedItem().length > 0 &&
                  pageIDInput.text.length > 0 &&
                  langInput.currentText !== "Unknown" &&
-                 langInput.currentIndex !== ""
+                 langInput.currentText !== ""
         width: 150
         height: 40
         anchors.bottom: parent.bottom
@@ -189,10 +199,10 @@ Rectangle {
 
     function getListSelectedItem() {
         var selectedItems = [];
-        for(var i = 0; i < nodeList.count; i++ ){
+        for(var i = 0; i < nodeList.contentItem.children.length; i++ ){
             if(nodeList.contentItem.children[i] !== undefined &&
                     nodeList.contentItem.children[i].isSelected)
-                selectedItems.push(info.acsblNodeList[i])
+                selectedItems.push(nodeList.contentItem.children.modelData)
         }
         return selectedItems;
     }
