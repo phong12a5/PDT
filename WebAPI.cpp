@@ -109,7 +109,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
     QJsonObject json;
 
     json.insert("action", "GetJasmine");
-    json.insert("token", "emk0wteqlmgawdrhzn18u");
+    json.insert("token", "496UTSHK4XMCNV1WEYP41K");
 
     QByteArray jsonData = QJsonDocument(json).toJson();
 
@@ -149,7 +149,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
 void WebAPI::getJamineDefinations(QString &definations)
 {
     LOGD << "";
-    QString url = "https://api.autofarmer.net/api3/config?token=emk0wteqlmgawdrhzn18u";
+    QString url = "https://api.autofarmer.net/api3/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
 
     KEY_PAIR keyPair = getDynamicKey();
@@ -207,7 +207,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 {
     QString defArrStr = QJsonDocument(defArr).toJson();
     LOGD << "";
-    QString url = "https://api.autofarmer.net/api3/config?token=emk0wteqlmgawdrhzn18u";
+    QString url = "https://api.autofarmer.net/api3/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
 
     KEY_PAIR keyPair = getDynamicKey();

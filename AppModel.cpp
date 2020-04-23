@@ -3,6 +3,8 @@
 #include <QJsonDocument>
 #include <QString>
 #include <QMessageBox>
+#include <QFile>
+#include <QDateTime>
 
 AppModel* AppModel::m_instance = nullptr;
 
@@ -69,10 +71,29 @@ void AppModel::saveResult()
     foreach (QString pageID, m_definationMap.keys()) {
         defArr.append(m_definationMap.value(pageID));
     }
+
     LOGD << "pageObj: " << defArr;
     if(!defArr.isEmpty()) {
         WebAPI::instance()->saveJamineDefinations(defArr);
     }
+
+    QString outputFilename = QString("D:/Qt/Project/PDT/DataBackup/")
+                            + QString::number(QDate::currentDate().year()) + "_"
+                            + QString::number(QDate::currentDate().month()) + "_"
+                            + QString::number(QDate::currentDate().day()) + "_"
+                            + QString::number(QTime::currentTime().hour()) + "_"
+                            + QString::number(QTime::currentTime().minute()) + "_"
+                            + QString::number(QTime::currentTime().second()) + ".json";
+    QFile backupFile(outputFilename);
+    if (!backupFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        LOGD << "open fileFail";
+        return;
+    }
+    QTextStream out(&backupFile);
+    QJsonDocument doc;
+    doc.setArray(defArr);
+    out << doc.toJson();
+    backupFile.close();
 }
 
 void AppModel::getJamineDefinations()
