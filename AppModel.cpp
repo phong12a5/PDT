@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QDateTime>
+#include <QDir>
 
 AppModel* AppModel::m_instance = nullptr;
 
@@ -77,7 +78,7 @@ void AppModel::saveResult()
         WebAPI::instance()->saveJamineDefinations(defArr);
     }
 
-    QString outputFilename = QString("D:/Qt/Project/PDT/DataBackup/")
+    QString outputFilename = QDir::currentPath() + "/../PDT/DataBackup/"
                             + QString::number(QDate::currentDate().year()) + "_"
                             + QString::number(QDate::currentDate().month()) + "_"
                             + QString::number(QDate::currentDate().day()) + "_"
