@@ -17,6 +17,7 @@ Window {
         model: AppModel.listLogRecord
         clip: true
         visible: count > 0
+        cacheBuffer: 0
         onProcessLog: {
             currentIndex = index
             processorPage.show()
@@ -51,6 +52,7 @@ Window {
         width: parent.width
         height: parent.height
         visible: opacity == 0? false : true
+        index: listRecord.currentIndex
     }
 
     Component.onCompleted: showMaximized()

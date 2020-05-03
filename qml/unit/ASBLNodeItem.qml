@@ -30,7 +30,7 @@ Rectangle {
  * true; visible: true;*/
     property QtObject nodeData: modelData
     property bool enableKeywordInput: false
-    property string text: nodeData.keyword
+    property string text: nodeData == undefined? "" : nodeData.keyword
     property var propNameList:
         [{propName:"text", value : modelData.text},
         {propName:"contentDescription", value : modelData.contentDescription},
@@ -50,12 +50,11 @@ Rectangle {
 
 
     Row{
-        anchors.left: parent.left
-        anchors.leftMargin: 5
-
         Repeater{
             model: propNameList
-            Item{
+            Rectangle{
+                id: dlg
+                border.width: 1
                 width: modelData.propName === "text"? root.width/6 :
                       modelData.propName === "contentDescription"? root.width/6 :
                       modelData.propName === "className"? root.width/6 :
@@ -70,10 +69,28 @@ Rectangle {
                     text: modelData.propName === "keyword"? modelData.propName + ":":
                                                             modelData.propName + ":" + modelData.value
                     anchors.verticalCenter: parent.verticalCenter
-                    elide: Text.ElideRight
-                    width: parent.width
+                    anchors.left: parent.left
+                    anchors.leftMargin: 5
+                    width: parent.width - 5
                     height: parent.height
                     verticalAlignment: Text.AlignVCenter
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    hoverEnabled : true
+                    onContainsMouseChanged: {
+                        if(modelData.propName === "text" ||
+                           modelData.propName === "contentDescription") {
+                            if(containsMouse) {
+                                if(label.contentWidth > dlg.width) {
+                                    dlg.width = label.contentWidth + 10
+                                }
+                            } else {
+                                dlg.width = root.width/6
+                            }
+                        }
+                    }
                 }
 
                 TextField{
@@ -94,6 +111,18 @@ Rectangle {
                     }
                     Component.onCompleted: {
                         text = nodeData.keyword
+                    }
+
+                    onCursorVisibleChanged: {
+                        if(cursorVisible) {
+                            var absPos = mapToItem(processPage,0,0)
+                            console.log("absPos: " + absPos)
+                            suggestIDList.x = absPos.x
+                            suggestIDList.y = absPos.y + height
+                            suggestIDList.model = AppModel.getListIDComponent(pageIDInput.text, langInput.currentText)
+                        } else {
+                            suggestIDList.model = undefined
+                        }
                     }
                 }
             }

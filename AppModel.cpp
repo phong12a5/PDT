@@ -59,7 +59,7 @@ void AppModel::getLogFromServer()
         qDeleteAll(m_listLogRecord);
         m_listLogRecord.clear();
         foreach(QJsonObject logObj , listRecord) {
-            m_listLogRecord.append(new LogElement(logObj));
+            m_listLogRecord.append(new LogElement(m_listLogRecord.length(),logObj));
             emit listLogRecordChanged();
         }
     }
@@ -176,6 +176,21 @@ void AppModel::updateJamineKeyword(QString pageID, QString language, QList<QObje
         LOGD << "pageObj: " << pageObj;
         insertPageDefinations(pageObj);
     }
+}
+
+QStringList AppModel::getListIDComponent(QString pageID, QString language)
+{
+    QStringList result;
+    QJsonObject pageObj = this->getPageDefinations(pageID);
+    QJsonObject keywordsField = pageObj.value("keywords").toObject();
+    QJsonArray arrKeywordByLang = keywordsField[language].toArray();
+    for(int i = 0; i < arrKeywordByLang.size(); i++){
+        QJsonObject item = arrKeywordByLang.at(i).toObject();
+        if(item.contains("keyword")){
+            result.append(item.value("keyword").toString());
+        }
+    }
+    return result;
 }
 
 

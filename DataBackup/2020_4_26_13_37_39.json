@@ -1,0 +1,1758 @@
+[
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "AutofarmerXYZ will start capturing everything that's displayed on your screen."
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_START_NOW_BTN",
+                    "selected": false,
+                    "text": "START NOW"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.CheckBox",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_DONT_SHOW_AGAIN",
+                    "selected": false,
+                    "text": "Don't show again"
+                }
+            ]
+        },
+        "page": "PAGE_ACCEPT_CAPTURE_SCREEN"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "App info"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Facebook"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Installed"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_UNISTALL_BTN",
+                    "selected": false,
+                    "text": "UNINSTALL"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_FORCE_STOP_BTN",
+                    "selected": false,
+                    "text": "FORCE STOP"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_STORAGE_ITEM",
+                    "selected": false,
+                    "text": "Storage"
+                }
+            ]
+        },
+        "page": "PAGE_APP_FACEBOOK_INFO"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Modify system settings"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "AutofarmerXYZ"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Allow modifying system settings"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Switch",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_ON_OFF_SWITCH_BTN",
+                    "selected": false,
+                    "text": "OFF"
+                }
+            ]
+        },
+        "page": "PAGE_AUTOFARMER_MODIFY_SYSTEM_SETTINGS"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Complete action using"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Network settings"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Mobile network"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_MOBILE_NETWORK_ITEM",
+                    "selected": false,
+                    "text": "Mobile network"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_ALWAYS_BTN",
+                    "selected": false,
+                    "text": "ALWAYS"
+                }
+            ]
+        },
+        "page": "PAGE_COMPLETE_ACTION_USING"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Delete app data?"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "CANCEL"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_CANCEL_BTN",
+                    "selected": false,
+                    "text": "CANCEL"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_DELETE_APP_DATA_ACCEPT"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": false,
+                        "contentDescription": "Two-Factor Authentication Is On",
+                        "selected": false,
+                        "text": "Two-Factor Authentication Is On"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Two-Factor Authentication"
+                    }
+                ]
+            ]
+        },
+        "page": "PAGE_FACEBOOK_2FA_IS_ON"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "Back",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": false,
+                        "contentDescription": "Answer Questions",
+                        "selected": false,
+                        "text": "Answer Questions"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_INPUT_ANSWER_FIELD",
+                    "selected": false,
+                    "text": "Write your answer..."
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "Submit",
+                    "keyword": "ID_SUBMIT_BTN",
+                    "selected": false,
+                    "text": "null"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_ANWSER_QUESTION"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.View",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": ""
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Confirm Your Identity"
+                    }
+                ]
+            ]
+        },
+        "page": "PAGE_FACEBOOK_CHECKPOINT"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "Continue",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": true,
+                        "contentDescription": "Resend Code",
+                        "selected": false,
+                        "text": "Resend Code"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_INPUT_CODE_FIELD",
+                    "selected": false,
+                    "text": "Login Code"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "Continue",
+                    "keyword": "ID_CONTINUE_BTN",
+                    "selected": false,
+                    "text": "null"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_ENTER_LOGGIN_CODE"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": false,
+                        "contentDescription": "Join Group",
+                        "selected": false,
+                        "text": "Join Group"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": false,
+                        "contentDescription": "About",
+                        "selected": false,
+                        "text": "About"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.view.ViewGroup",
+                    "clickable": false,
+                    "contentDescription": "Join Group",
+                    "keyword": "ID_JOIN_GROUP_BTN",
+                    "selected": false,
+                    "text": "Join Group"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_GROUP_PROFILE"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.View",
+                        "clickable": true,
+                        "contentDescription": "News Feed, Tab 1 of 6",
+                        "selected": true,
+                        "text": "null"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.View",
+                        "clickable": true,
+                        "contentDescription": "News Feed, Tab 1 of 3",
+                        "selected": true,
+                        "text": "null"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.View",
+                        "clickable": true,
+                        "contentDescription": "News Feed, Tab 1 of 4",
+                        "selected": true,
+                        "text": "null"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.view.View",
+                    "clickable": true,
+                    "contentDescription": "Menu, Tab 6 of 6",
+                    "keyword": "ID_MENU_BTN",
+                    "selected": false,
+                    "text": "null"
+                },
+                {
+                    "checked": false,
+                    "className": "android.view.View",
+                    "clickable": true,
+                    "contentDescription": "Menu, Tab 3 of 3",
+                    "keyword": "ID_MENU_BTN",
+                    "selected": false,
+                    "text": "null"
+                },
+                {
+                    "checked": false,
+                    "className": "android.view.View",
+                    "clickable": true,
+                    "contentDescription": "Menu, Tab 4 of 4",
+                    "keyword": "ID_MENU_BTN",
+                    "selected": false,
+                    "text": "null"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_HOME"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Incorrect Password"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_INCORRECT_PASSWORD"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log Into Another Account"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "CREATE NEW FACEBOOK ACCOUNT"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_LOGGIN_ANOTHER_ACC_BTN",
+                    "selected": false,
+                    "text": "Log Into Another Account"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": false,
+                    "contentDescription": "Menu",
+                    "keyword": "ID_MENU_BTN",
+                    "selected": false,
+                    "text": "null"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_LOGGED_OUT"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Login Code Required"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_LOGGIN_CODE_REQUIRE"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.EditText",
+                        "clickable": true,
+                        "contentDescription": "Username",
+                        "selected": false,
+                        "text": "Phone or email"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.EditText",
+                        "clickable": true,
+                        "contentDescription": "Password",
+                        "selected": false,
+                        "text": "Password"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": false,
+                        "contentDescription": "Log In",
+                        "selected": false,
+                        "text": "Log In"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": false,
+                        "contentDescription": "Create New Facebook Account",
+                        "selected": false,
+                        "text": "Create New Facebook Account"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "Username",
+                    "keyword": "ID_EMAIL_FIELD",
+                    "selected": false,
+                    "text": "Phone or email"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "Password",
+                    "keyword": "ID_PASSWORD_FIELD",
+                    "selected": false,
+                    "text": "Password"
+                },
+                {
+                    "checked": false,
+                    "className": "android.view.ViewGroup",
+                    "clickable": false,
+                    "contentDescription": "Log In",
+                    "keyword": "ID_LOGIN_BTN",
+                    "selected": false,
+                    "text": "Log In"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_LOGIN"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.View",
+                        "clickable": true,
+                        "contentDescription": "Menu, Tab 6 of 6",
+                        "selected": true,
+                        "text": "null"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.View",
+                        "clickable": true,
+                        "contentDescription": "Menu, Tab 3 of 3",
+                        "selected": true,
+                        "text": "null"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.view.ViewGroup",
+                    "clickable": false,
+                    "contentDescription": "Settings & Privacy",
+                    "keyword": "ID_SETTING&PRIVACY_BTN",
+                    "selected": false,
+                    "text": "Settings & Privacy"
+                },
+                {
+                    "checked": false,
+                    "className": "android.view.ViewGroup",
+                    "clickable": false,
+                    "contentDescription": "Settings",
+                    "keyword": "ID_SETTING_BTN",
+                    "selected": false,
+                    "text": "Settings"
+                },
+                {
+                    "checked": false,
+                    "className": "android.view.ViewGroup",
+                    "clickable": false,
+                    "contentDescription": "Language",
+                    "keyword": "ID_LANGUAGE_SETTING_BTN",
+                    "selected": false,
+                    "text": "Language"
+                },
+                {
+                    "checked": false,
+                    "className": "android.view.ViewGroup",
+                    "clickable": false,
+                    "contentDescription": "Log Out",
+                    "keyword": "ID_LOGOUT_BTN",
+                    "selected": false,
+                    "text": "Log Out"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_MENU"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Can't Find Account"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "TRY AGAIN"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_TRY_AGAIN_BTN",
+                    "selected": false,
+                    "text": "TRY AGAIN"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_NOT_FOUND_ACCOUNT"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "Cancel Request",
+                        "selected": false,
+                        "text": "null"
+                    }
+                ]
+            ]
+        },
+        "page": "PAGE_FACEBOOK_REQUESTED_JOIN_GROUP"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.view.ViewGroup",
+                        "clickable": false,
+                        "contentDescription": "Allow Facebook to access your location?",
+                        "selected": false,
+                        "text": "Allow Facebook to access your location?"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "Deny",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "Allow",
+                        "selected": false,
+                        "text": "null"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "Deny",
+                    "keyword": "ID_DENY_BTN",
+                    "selected": false,
+                    "text": "null"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_REQUEST_ACCESS_LOCATION"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.EditText",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Password"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "LOG IN"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "LOG IN"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Forgot Password?"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_PASSWORD_FIELD",
+                    "selected": false,
+                    "text": "Password"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_LOGIN_BTN",
+                    "selected": false,
+                    "text": "Forgot Password?"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_RE_ENTER_PASSWORD"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Save Your Login Info"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Not Now"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Save login information?"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Not Now"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_NOTNOW_BTN",
+                    "selected": false,
+                    "text": "Not Now"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_SAVE_LOGGIN_INFO"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.ImageView",
+                        "clickable": true,
+                        "contentDescription": "Back",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.view.View",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Security and Login"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.ImageView",
+                        "clickable": true,
+                        "contentDescription": "Back",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Change password"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "Use two-factor authentication, We'll ask for a code if we notice an attempted login from an unrecognized device or browser.",
+                    "keyword": "ID_2FA_BTN",
+                    "selected": false,
+                    "text": "null"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_SECURITY&LOGIN"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Session Expired"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_SEESIONG_EXPIRED"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.EditText",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Search Settings"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_SECURITY&LOGIN_BTN",
+                    "selected": false,
+                    "text": "Security and Login"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_SETTINGS"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.ImageView",
+                        "clickable": true,
+                        "contentDescription": "Back",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Language"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.CheckedTextView",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_ENG_OPTION",
+                    "selected": false,
+                    "text": "English"
+                },
+                {
+                    "checked": true,
+                    "className": "android.widget.CheckedTextView",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_ENG_OPTION",
+                    "selected": false,
+                    "text": "English"
+                }
+            ]
+        },
+        "page": "PAGE_FACEBOOK_SETTING_LANGUAGE"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Force stop?"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "CANCEL"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_FORCE_STOP_ACCEPT"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Facebook"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Installing…"
+                    }
+                ]
+            ]
+        },
+        "page": "PAGE_INSTALLING_FACEBOOK_APP"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Facebook"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "CANCEL"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "INSTALL"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_INSTALL_BTN",
+                    "selected": false,
+                    "text": "INSTALL"
+                }
+            ]
+        },
+        "page": "PAGE_INSTALL_FACEBOOK_ACCEPT"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Facebook"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "App installed."
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "DONE"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OPEN"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_DONE_BTN",
+                    "selected": false,
+                    "text": "DONE"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OPEN_BTN",
+                    "selected": false,
+                    "text": "OPEN"
+                }
+            ]
+        },
+        "page": "PAGE_INSTALL_FACEBOOK_DONE"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Install unknown apps"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "AutofarmerXYZ"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Allow from this source"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Switch",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_ON_OFF_SWITCH_BTN",
+                    "selected": false,
+                    "text": "OFF"
+                }
+            ]
+        },
+        "page": "PAGE_INSTALL_UNKNOWN_APP"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Login Failed"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_LOGIN_FAILED"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Network settings"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Mobile data"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Roaming"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": true,
+                    "className": "android.widget.Switch",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_ON_MOBILE_NETWORK_SWITCH_BTN",
+                    "selected": false,
+                    "text": "ON"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Switch",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_OFF_MOBILE_NETWORK_SWITCH_BTN",
+                    "selected": false,
+                    "text": "OFF"
+                }
+            ]
+        },
+        "page": "PAGE_MOBILE_NETWORK_SETTING"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Modify system settings"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.ImageButton",
+                        "clickable": true,
+                        "contentDescription": "More options",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "AutofarmerXYZ"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Modify system settings"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.ImageButton",
+                        "clickable": true,
+                        "contentDescription": "More options",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "AutofarmerXYZ"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_AUTOFARMER_APP_ICON",
+                    "selected": false,
+                    "text": "AutofarmerXYZ"
+                }
+            ]
+        },
+        "page": "PAGE_MODIFY_SYSTEM_SETTINGS"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Storage"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Facebook"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "CLEAR STORAGE"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "CLEAR CACHE"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_CLEAR_STORAGE_BTN",
+                    "selected": false,
+                    "text": "CLEAR STORAGE"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_CLEAR_CACHE_BTN",
+                    "selected": false,
+                    "text": "CLEAR CACHE"
+                }
+            ]
+        },
+        "page": "PAGE_STORAGE_MANAGER_FACEBOOK"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Facebook"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Do you want to uninstall this app?"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "CANCEL"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OK"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_OK_BTN",
+                    "selected": false,
+                    "text": "OK"
+                }
+            ]
+        },
+        "page": "PAGE_UNINSTALL_FACEBOOK_ACCEPT"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Wi-Fi"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "Search settings",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Use Wi-Fi"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": true,
+                    "className": "android.widget.Switch",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_ON_WIFI_SWITCH_BUTTON",
+                    "selected": false,
+                    "text": "ON"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Switch",
+                    "clickable": false,
+                    "contentDescription": "Wi-Fi",
+                    "keyword": "ID_OFF_WIFI_SWITCH_BUTTON",
+                    "selected": false,
+                    "text": "OFF"
+                }
+            ]
+        },
+        "page": "PAGE_WIFI_SETTING"
+    }
+]

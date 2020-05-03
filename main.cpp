@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("AppModel",AppModel::instance());
     engine.rootContext()->setContextProperty("AppMain",&appMain);
+    engine.rootContext()->setContextProperty("applicationDirPath", QDir::currentPath());
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

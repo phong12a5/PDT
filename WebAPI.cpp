@@ -132,8 +132,9 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
                     QJsonArray arr = doc.array();
                     for (int j = 0; j < arr.size(); j++) {
                         QJsonObject obj = arr.at(j).toObject();
-                        QJsonObject logElement = QJsonDocument::fromJson(obj.value("info").toString().toLocal8Bit().data()).object();
-                        dataContainer.append(logElement);
+//                        std::cout << QString(QJsonDocument(obj).toJson()).toUtf8().data() << std::endl;
+//                        LOGD << " ---------------------------------------------------- ";
+                        dataContainer.append(obj);
                     }
                 }
             } else {

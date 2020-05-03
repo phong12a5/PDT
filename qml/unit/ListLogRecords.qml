@@ -11,7 +11,7 @@ ListView {
         border.width: 2
         border.color: "blue"
         width: parent.width
-        height: 300
+        height: 500
         clip: true
         PText {
             anchors.verticalCenter: parent.verticalCenter
@@ -23,12 +23,19 @@ ListView {
             font.bold: true
         }
 
+        Image{
+            id: imgLog
+            height: parent.height
+            fillMode: Image.PreserveAspectFit
+            source: "file:///" + applicationDirPath + "/page_"+ index + ".png"
+        }
+
         ListView {
             id: nodeList
             model: modelData.acsblNodeList
             height: parent.height
             anchors {
-                left: parent.left
+                left: imgLog.right
                 leftMargin: 35
                 right: parent.right
                 rightMargin: 100

@@ -7,6 +7,9 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <CkJsonArray.h>
+#include <QImage>
+#include <QDir>
+#include <iostream>
 
 /*[android.view.accessibility.AccessibilityNodeInfo@a287;
  * boundsInParent: Rect(0, 0 - 126, 38);
@@ -145,7 +148,15 @@ private:
     QList<QObject*> m_acsblNodeList;
 
 public:
-    explicit LogElement(QJsonObject logJObj) {
+    explicit LogElement(int index, QJsonObject logElement) {
+        QJsonObject logJObj = QJsonDocument::fromJson(logElement.value("info").toString().toLocal8Bit().data()).object();
+        QString content = logElement.value("image1").toString();
+        QByteArray imageData = QByteArray::fromBase64(content.toUtf8());
+        QImage img;
+        if (img.loadFromData(imageData)) {
+            img.save(QDir::currentPath() + "/" + QString("page_%1.png").arg(index));
+        }
+
         if(logJObj.contains("token")){
             m_token = logJObj.value("token").toString();
         }
@@ -239,7 +250,7 @@ public:
     Q_INVOKABLE void getJamineDefinations();
     Q_INVOKABLE void updateJamineDefinations(QString pageID, QString language, QList<QObject*> nodeList);
     Q_INVOKABLE void updateJamineKeyword(QString pageID, QString language, QList<QObject*> nodeList);
-
+    Q_INVOKABLE QStringList getListIDComponent(QString pageID, QString language);
 signals:
     void listLogRecordChanged();
     void listPageIDChanged();

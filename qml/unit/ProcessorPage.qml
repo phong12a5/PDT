@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.0
 
 Rectangle {
-    id: root
+    id: processPage
     scale: 0
     opacity: 0
 
@@ -10,6 +10,7 @@ Rectangle {
     property int currentTab: _COLLECT_EVIDENCE_TAB
     property int _COLLECT_EVIDENCE_TAB: 0
     property int _COLLECT_KEYWORD_TAB: 1
+    property int index: -1
 
     signal resetCheckState()
     MouseArea{
@@ -61,6 +62,13 @@ Rectangle {
         }
     }
 
+    Image{
+        id: imgLog
+        anchors.top: tabMenu.bottom
+        height: 500
+        fillMode: Image.PreserveAspectFit
+        source: index < 0? "" : "file:///" + applicationDirPath + "/page_"+ index + ".png"
+    }
 
 
     ListView {
@@ -68,7 +76,7 @@ Rectangle {
         model: info !== undefined? info.acsblNodeList : info
         clip: true
         anchors {
-            left: parent.left
+            left: imgLog.right
             leftMargin: 10
             right: parent.right
             rightMargin: 10
@@ -107,12 +115,26 @@ Rectangle {
                 indicator.height: 20
                 enabled:  currentTab == _COLLECT_KEYWORD_TAB ? modelData.keyword !== "" : true
                 Connections{
-                    target: root
+                    target: processPage
                     onCurrentTabChanged: {
                         selectCheckbox.checkState = Qt.Unchecked
                     }
                 }
             }
+        }
+    }
+
+    ListView{
+        id: suggestIDList
+        width: parent.width
+        height: contentHeight
+        anchors.top: parent.bottom
+        anchors.topMargin: 2
+        model: AppModel.getListIDComponent(pageIDInput.text, langInput.currentText)
+        delegate: Text {
+            width: 200
+            height: 40
+            text: modelData
         }
     }
 
@@ -181,7 +203,7 @@ Rectangle {
 
     NumberAnimation{
         id: showAnimation
-        target: root
+        target: processPage
         properties: "scale,opacity"
         from: 0
         to: 1
@@ -190,7 +212,7 @@ Rectangle {
 
     NumberAnimation{
         id: hideAnimation
-        target: root
+        target: processPage
         properties: "scale,opacity"
         from: 1
         to: 0
