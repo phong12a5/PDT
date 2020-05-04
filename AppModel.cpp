@@ -58,10 +58,11 @@ void AppModel::getLogFromServer()
     if(!listRecord.isEmpty()) {
         qDeleteAll(m_listLogRecord);
         m_listLogRecord.clear();
+
         foreach(QJsonObject logObj , listRecord) {
             m_listLogRecord.append(new LogElement(m_listLogRecord.length(),logObj));
-            emit listLogRecordChanged();
         }
+        emit listLogRecordChanged();
     }
 }
 

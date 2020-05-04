@@ -149,6 +149,7 @@ private:
 
 public:
     explicit LogElement(int index, QJsonObject logElement) {
+
         QJsonObject logJObj = QJsonDocument::fromJson(logElement.value("info").toString().toLocal8Bit().data()).object();
         QString content = logElement.value("image1").toString();
         QByteArray imageData = QByteArray::fromBase64(content.toUtf8());
@@ -194,6 +195,7 @@ public:
                 m_acsblNodeList.append(new ASBLTNode(arr.stringAt(i)));
             }
         }
+
     }
 
     ~LogElement() {
