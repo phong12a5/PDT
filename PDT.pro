@@ -43,12 +43,17 @@ HEADERS += \
     AppModel.h \
     WebAPI.hpp \
     AppDefines.h
+win32 {
+    INCLUDEPATH += $$PWD/win32/include/
+    LIBS += -L$$PWD/win32/libs/ -lchilkat-9.5.0 -lws2_32 -lcrypt32 -ldnsapi
+}
 
-LIBS += -L$$PWD/libs/ -lchilkat-9.5.0 -lws2_32 -lcrypt32 -ldnsapi
-LIBS += $$PWD/libs/Pdh.Lib
+macx {
+    INCLUDEPATH += $$PWD/macosx/include
+    LIBS += -L$$PWD/macosx/libs -lchilkat_i386 -lchilkat_x86_64
+}
 
 
-INCLUDEPATH += $$PWD/include/chilkat_mingw/
 
 RC_ICONS = Logo.ico
 
