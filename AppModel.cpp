@@ -11,6 +11,7 @@ AppModel* AppModel::m_instance = nullptr;
 
 AppModel::AppModel(QObject *parent) : QObject(parent)
 {
+    QDir().mkdir(QDir::currentPath() + "/images");
     LOGD << "Created";
 }
 

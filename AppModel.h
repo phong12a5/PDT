@@ -136,6 +136,7 @@ class LogElement: public QObject
     Q_PROPERTY(QList<QObject*> acsblNodeList READ acsblNodeList NOTIFY acsblNodeListChanged)
 
 private:
+    int m_index;
     QString m_token;
     QString m_dateTime;
     QString m_info;
@@ -149,13 +150,13 @@ private:
 
 public:
     explicit LogElement(int index, QJsonObject logElement) {
-
+        m_index = index;
         QJsonObject logJObj = QJsonDocument::fromJson(logElement.value("info").toString().toLocal8Bit().data()).object();
         QString content = logElement.value("image1").toString();
         QByteArray imageData = QByteArray::fromBase64(content.toUtf8());
         QImage img;
         if (img.loadFromData(imageData)) {
-            img.save(QDir::currentPath() + "/" + QString("page_%1.png").arg(index));
+            img.save(QDir::currentPath() + QString("/images/page_%1.png").arg(m_index));
         }
 
         if(logJObj.contains("token")){
@@ -200,6 +201,8 @@ public:
 
     ~LogElement() {
         qDeleteAll(m_acsblNodeList);
+        QFile file(QDir::currentPath() + QString("/images/page_%1.png").arg(m_index));
+        file.remove();
     }
 
 public:

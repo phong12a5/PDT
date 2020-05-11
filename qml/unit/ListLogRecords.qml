@@ -27,7 +27,7 @@ ListView {
             id: imgLog
             height: parent.height
             fillMode: Image.PreserveAspectFit
-            source: "file:///" + applicationDirPath + "/page_"+ index + ".png"
+            source: "file:///" + applicationDirPath + "/images/page_"+ index + ".png"
         }
 
         ListView {
