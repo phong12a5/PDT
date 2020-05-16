@@ -56,6 +56,7 @@ void AppModel::getLogFromServer()
     LOGD << "";
     QList<QJsonObject> listRecord;
     WebAPI::instance()->getJasmineLog(listRecord);
+    LOGD << "Record log count: " << listRecord.count();
     if(!listRecord.isEmpty()) {
         qDeleteAll(m_listLogRecord);
         m_listLogRecord.clear();

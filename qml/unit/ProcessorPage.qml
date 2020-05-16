@@ -67,7 +67,7 @@ Rectangle {
         anchors.top: tabMenu.bottom
         height: 500
         fillMode: Image.PreserveAspectFit
-        source: index < 0? "" : "file:///" + applicationDirPath + "/page_"+ index + ".png"
+        source: index < 0? "" : "file:///" + applicationDirPath + "/images/page_"+ index + ".png"
     }
 
 

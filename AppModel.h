@@ -154,9 +154,14 @@ public:
         QJsonObject logJObj = QJsonDocument::fromJson(logElement.value("info").toString().toLocal8Bit().data()).object();
         QString content = logElement.value("image1").toString();
         QByteArray imageData = QByteArray::fromBase64(content.toUtf8());
+        QString imgpath = QDir::currentPath() + QString("/images/page_%1.png").arg(m_index);
+        QFile imgFile(imgpath);
+        imgFile.remove();
+        imgFile.close();
+
         QImage img;
         if (img.loadFromData(imageData)) {
-            img.save(QDir::currentPath() + QString("/images/page_%1.png").arg(m_index));
+            img.save(imgpath);
         }
 
         if(logJObj.contains("token")){
