@@ -27,7 +27,6 @@ ListView {
             id: imgLog
             height: parent.height
             fillMode: Image.PreserveAspectFit
-            source: "file:///" + applicationDirPath + "/images/page_"+ index + ".png"
         }
 
         ListView {
@@ -69,6 +68,15 @@ ListView {
                     processLog(index)
                 }
             }
+        }
+
+        Component.onCompleted: {
+            imgLog.source = "file:///" + applicationDirPath + "/images/page_"+ index + ".png"
+        }
+
+        Component.onDestruction: {
+
+            imgLog.source = ""
         }
     }
 

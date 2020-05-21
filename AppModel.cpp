@@ -54,13 +54,14 @@ QJsonObject AppModel::getPageDefinations(QString pageID)
 void AppModel::getLogFromServer()
 {
     LOGD << "";
+    qDeleteAll(m_listLogRecord);
+    m_listLogRecord.clear();
+    emit listLogRecordChanged();
+
     QList<QJsonObject> listRecord;
     WebAPI::instance()->getJasmineLog(listRecord);
     LOGD << "Record log count: " << listRecord.count();
     if(!listRecord.isEmpty()) {
-        qDeleteAll(m_listLogRecord);
-        m_listLogRecord.clear();
-
         foreach(QJsonObject logObj , listRecord) {
             m_listLogRecord.append(new LogElement(m_listLogRecord.length(),logObj));
         }
