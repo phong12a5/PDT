@@ -77,7 +77,6 @@ void AppModel::saveResult()
         defArr.append(m_definationMap.value(pageID));
     }
 
-    LOGD << "pageObj: " << defArr;
     if(!defArr.isEmpty()) {
         WebAPI::instance()->saveJamineDefinations(defArr);
     }

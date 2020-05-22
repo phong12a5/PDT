@@ -15,6 +15,7 @@ Window {
         width: parent.width
         height: parent.height - downloadLogBtn.height - 10
         model: AppModel.listLogRecord
+        showByUknownPage: showByUnknownCheckbox.checked
         clip: true
         visible: count > 0
         cacheBuffer: 0
@@ -43,6 +44,22 @@ Window {
         onClicked: {
             AppModel.saveResult()
         }
+    }
+
+    PText{
+        anchors.verticalCenter: showByUnknownCheckbox.verticalCenter
+        anchors.right: showByUnknownCheckbox.left
+        anchors.rightMargin: 10
+        text: "Show by Unknown page"
+    }
+
+    CheckBox{
+        id: showByUnknownCheckbox
+        anchors.verticalCenter: downloadLogBtn.verticalCenter
+        anchors.right: downloadLogBtn.left
+        anchors.rightMargin: 20
+        indicator.width: 20
+        indicator.height: 20
     }
 
     ProcessorPage{

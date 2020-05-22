@@ -4,6 +4,8 @@ import QtQuick.Controls 2.5
 ListView {
     id: root
 
+    property bool showByUknownPage: false
+
     signal processLog(var index)
 
     delegate: Rectangle{
@@ -11,8 +13,20 @@ ListView {
         border.width: 2
         border.color: "blue"
         width: parent.width
-        height: 500
+        height: root.showByUknownPage == false? 500 : (modelData.page === "PAGE_UNKNOWN"? 500 : 0)
         clip: true
+
+        PText{
+            id: pageName
+            width: nodeList.width
+            height: 20
+            anchors.top: parent.top
+            anchors.topMargin: 5
+            anchors.horizontalCenter: nodeList.horizontalCenter
+            text: modelData.page
+            color: "#1E90FF"
+        }
+
         PText {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
@@ -34,6 +48,7 @@ ListView {
             model: modelData.acsblNodeList
             height: parent.height
             anchors {
+                top: pageName.bottom
                 left: imgLog.right
                 leftMargin: 35
                 right: parent.right
