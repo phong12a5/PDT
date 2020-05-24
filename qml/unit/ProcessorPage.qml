@@ -146,6 +146,7 @@ Rectangle {
         anchors.topMargin: 20
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: - (width/2 + 20)
+        text: info !== undefined? info.page : ""
     }
 
     ComboBox{
@@ -231,7 +232,6 @@ Rectangle {
     }
 
     function show() {
-        pageIDInput.text = "";
         langInput.currentIndex = AppModel.listLanguage.indexOf("English")
         showAnimation.start()
     }

@@ -14,6 +14,7 @@ ListView {
         border.color: "blue"
         width: parent.width
         height: root.showByUknownPage == false? 500 : (modelData.page === "PAGE_UNKNOWN"? 500 : 0)
+        visible: root.showByUknownPage == false? true : modelData.page === "PAGE_UNKNOWN"
         clip: true
 
         PText{
