@@ -190,7 +190,8 @@ QStringList AppModel::getListIDComponent(QString pageID, QString language)
     for(int i = 0; i < arrKeywordByLang.size(); i++){
         QJsonObject item = arrKeywordByLang.at(i).toObject();
         if(item.contains("keyword")){
-            result.append(item.value("keyword").toString());
+            if(!result.contains(item.value("keyword").toString()))
+                result.append(item.value("keyword").toString());
         }
     }
     return result;

@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.13
 import QtQuick.Controls 2.0
 
 Rectangle {
@@ -7,8 +7,20 @@ Rectangle {
     border.width: 1
     border.color: "grey"
     width: parent.width
-    height: 30
+    height: contentHeight > 30? contentHeight : 30
 
+    property alias selectCheckbox: selectCheckbox
+    property bool isSelected: selectCheckbox.checkState == Qt.Checked
+    property int contentHeight: getHeight()
+
+    function getHeight() {
+        if(textField.contentHeight >= contentDescriptionField.contentHeight && textField.contentHeight >= keyWordItem.height)
+            return textField.contentHeight
+        else if(contentDescriptionField.contentHeight >= textField.contentHeight && contentDescriptionField.contentHeight >= keyWordItem.height)
+            return contentDescriptionField.contentHeight
+        else
+            return keyWordItem.height
+    }
 
     /*
  * text: Ti\\u1ebfng Vi\\u1ec7t;
@@ -28,103 +40,133 @@ Rectangle {
  * scrollable: false;
  * importantForAccessibility:
  * true; visible: true;*/
-    property QtObject nodeData: modelData
     property bool enableKeywordInput: false
-    property string text: nodeData == undefined? "" : nodeData.keyword
-    property var propNameList:
-        [{propName:"text", value : modelData.text},
-        {propName:"contentDescription", value : modelData.contentDescription},
-        {propName:"className", value : modelData.className},
-        {propName:"clickable", value : modelData.clickable},
-        {propName:"checked", value : modelData.checked},
-        {propName:"selected", value : modelData.selected},
-        {propName:"keyword", value : ""}]
-
-
-    signal keywordChanged(var keyword)
+    property bool enableCheckbox: false
+    property bool visibleCheckbox: false
+    property string keyword: modelData.keyword
+    property var rootModel: modelData
 
     onKeywordChanged: {
-        if(keyword !== modelData.keyword)
-            modelData.keyword = keyword
+        if(keyword != "" && keyword != undefined){
+            selectCheckbox.checkState = Qt.Checked
+        } else {
+            selectCheckbox.checkState = Qt.Unchecked
+        }
     }
 
-
     Row{
-        Repeater{
-            model: propNameList
-            Rectangle{
-                id: dlg
-                border.width: 1
-                width: modelData.propName === "text"? root.width/6 :
-                      modelData.propName === "contentDescription"? root.width/6 :
-                      modelData.propName === "className"? root.width/6 :
-                      modelData.propName === "clickable"? root.width/10 :
-                      modelData.propName === "checked"? root.width/10 :
-                      modelData.propName === "selected"? root.width/10 :
-                      modelData.propName === "keyword"? root.width/5 : 0
+        anchors.fill: parent
+        TextEdit{
+            id: textField
+            height: parent.height
+            width: root.width/6
+            text: modelData.text
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
+            padding: 2
+            onTextChanged: {
+                if(text !== modelData.text)
+                    modelData.text = text
+            }
+        }
 
-                height: root.height
-                Text {
-                    id: label
-                    text: modelData.propName === "keyword"? modelData.propName + ":":
-                                                            modelData.propName + ":" + modelData.value
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 5
-                    width: parent.width - 5
-                    height: parent.height
-                    verticalAlignment: Text.AlignVCenter
-                }
+        TextEdit{
+            id: contentDescriptionField
+            height: parent.height
+            width: root.width/6
+            text: modelData.contentDescription
+            wrapMode: Text.WordWrap
+            verticalAlignment: Text.AlignVCenter
+            padding: 2
+            onTextChanged: {
+                if(text !== modelData.contentDescription)
+                    modelData.contentDescription = text
+            }
+        }
 
-                MouseArea{
-                    anchors.fill: parent
-                    hoverEnabled : true
-                    onContainsMouseChanged: {
-                        if(modelData.propName === "text" ||
-                           modelData.propName === "contentDescription") {
-                            if(containsMouse) {
-                                if(label.contentWidth > dlg.width) {
-                                    dlg.width = label.contentWidth + 10
-                                }
-                            } else {
-                                dlg.width = root.width/6
-                            }
+        Text{
+            id: classNameField
+            height: parent.height
+            width: root.width/6
+            text: modelData.className
+            verticalAlignment: Text.AlignVCenter
+            padding: 2
+        }
+
+        Text{
+            id: clickableField
+            height: parent.height
+            width: root.width/10
+            text: modelData.clickable
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Text{
+            id: checkedField
+            height: parent.height
+            width: root.width/10
+            text: modelData.checked
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Text{
+            id: selectedField
+            height: parent.height
+            width: root.width/10
+            text: modelData.selected
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Item {
+            id: keyWordItem
+            width: root.width/5
+            height: suggestIDCmpList.height + keywordInput.height
+            anchors.verticalCenter: parent.verticalCenter
+            TextField {
+                id: keywordInput
+                width: parent.width
+                height: 30
+                enabled: enableKeywordInput
+                text: modelData.keyword
+                onTextChanged: if(modelData.keyword !== text) modelData.keyword = text
+            }
+            ListView {
+                id: suggestIDCmpList
+                anchors.top: keywordInput.bottom
+                width: parent.width
+                height: keywordInput.activeFocus? contentHeight: 0.1
+                visible: keywordInput.activeFocus
+                model: !visible? undefined : AppModel.getListIDComponent(pageIDInput.text, langInput.currentText)
+                delegate: Rectangle{
+                    width: parent.width
+                    height: 15
+                    color: "transparent"
+                    border.width: 1
+                    border.color: "black"
+                    PText {
+                        id: name
+                        text: modelData
+                        anchors.fill: parent
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onDoubleClicked:
+                        {
+                            rootModel.keyword = modelData
+                            suggestIDCmpList.forceActiveFocus()
                         }
                     }
                 }
-
-                TextField{
-                    id: keywordInput
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: parent.width - label.contentWidth - 50
-                    height: parent.height - 5
-                    anchors.right: parent.right
-                    anchors.rightMargin: 50
-                    visible: modelData.propName === "keyword"
-                    enabled: enableKeywordInput
-                    onTextChanged: {
-                        nodeData.keyword = text
-                    }
-                    Connections{
-                        target: nodeData
-                        onKeywordChanged: keywordInput.text = nodeData.keyword
-                    }
-                    Component.onCompleted: {
-                        text = nodeData.keyword
-                    }
-
-                    onCursorVisibleChanged: {
-                        if(cursorVisible) {
-                            var absPos = mapToItem(processPage,0,0)
-                            console.log("absPos: " + absPos)
-                            suggestIDList.x = absPos.x
-                            suggestIDList.y = absPos.y + height
-                            suggestIDList.model = AppModel.getListIDComponent(pageIDInput.text, langInput.currentText)
-                        } else {
-                            suggestIDList.model = undefined
-                        }
-                    }
-                }
+            }
+            CheckBox{
+                id: selectCheckbox
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.right
+                anchors.horizontalCenterOffset: -50/2
+                indicator.width: 20
+                indicator.height: 20
+                enabled: enableCheckbox
+                visible: visibleCheckbox
             }
         }
     }

@@ -88,53 +88,23 @@ Rectangle {
         delegate: Item{
             id: deleg
 
-            property bool isSelected: selectCheckbox.checkState == Qt.Checked
+            property bool isSelected: node.isSelected
             property var model: modelData
             width: parent.width
-            height: 30
+            height: node.height
             ASBLNodeItem {
                 id: node
-                height: parent.height
                 width: parent.width
                 enableKeywordInput: currentTab == _COLLECT_KEYWORD_TAB
-                onTextChanged: {
-                    if(text != "" && text != undefined){
-                        selectCheckbox.checkState = Qt.Checked
-                    } else {
-                        selectCheckbox.checkState = Qt.Unchecked
-                    }
-                }
-            }
-
-            CheckBox{
-                id: selectCheckbox
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.right
-                anchors.horizontalCenterOffset: -50/2
-                indicator.width: 20
-                indicator.height: 20
-                enabled:  currentTab == _COLLECT_KEYWORD_TAB ? modelData.keyword !== "" : true
-                Connections{
+                enableCheckbox: currentTab == _COLLECT_KEYWORD_TAB ? modelData.keyword !== "" : true
+                visibleCheckbox: true
+                Connections {
                     target: processPage
                     onCurrentTabChanged: {
-                        selectCheckbox.checkState = Qt.Unchecked
+                        node.selectCheckbox.checkState = Qt.Unchecked
                     }
                 }
             }
-        }
-    }
-
-    ListView{
-        id: suggestIDList
-        width: parent.width
-        height: contentHeight
-        anchors.top: parent.bottom
-        anchors.topMargin: 2
-        model: AppModel.getListIDComponent(pageIDInput.text, langInput.currentText)
-        delegate: Text {
-            width: 200
-            height: 40
-            text: modelData
         }
     }
 

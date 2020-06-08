@@ -58,7 +58,6 @@ ListView {
             delegate: ASBLNodeItem {
                 id: deleg
                 width: parent.width
-                height: 30
             }
         }
 
