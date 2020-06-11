@@ -129,6 +129,13 @@ void AppModel::getJamineDefinations()
 void AppModel::updateJamineDefinations(QString pageID, QString language, QList<QObject *> nodeList)
 {
     LOGD << "pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
+    if(pageID == "PAGE_UNKNOWN") {
+        LOGD << "Reject PAGE_UNKNOWN";
+        QMessageBox Msgbox;
+        Msgbox.setText("Reject PAGE_UNKNOWN!");
+        Msgbox.exec();
+        return;
+    }
     if(LANG_MAP.contains(language)){
         QJsonObject pageObj = this->getPageDefinations(pageID);
         QJsonObject definationsField = pageObj.value("definitons").toObject();
@@ -157,6 +164,14 @@ void AppModel::updateJamineDefinations(QString pageID, QString language, QList<Q
 void AppModel::updateJamineKeyword(QString pageID, QString language, QList<QObject *> nodeList)
 {
     LOGD << "pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
+    if(pageID == "PAGE_UNKNOWN") {
+        LOGD << "Reject PAGE_UNKNOWN";
+        QMessageBox Msgbox;
+        Msgbox.setText("Reject PAGE_UNKNOWN!");
+        Msgbox.exec();
+        return;
+        return;
+    }
     if(LANG_MAP.contains(language)){
         QJsonObject pageObj = this->getPageDefinations(pageID);
         QJsonObject keywordsField = pageObj.value("keywords").toObject();
