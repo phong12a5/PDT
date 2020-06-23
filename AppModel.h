@@ -133,6 +133,7 @@ class LogElement: public QObject
     Q_PROPERTY(QString className READ className NOTIFY classNameChanged)
     Q_PROPERTY(QString tag READ tag NOTIFY tagChanged)
     Q_PROPERTY(QString page READ page NOTIFY pageChanged)
+    Q_PROPERTY(QString message READ message NOTIFY messageChanged)
     Q_PROPERTY(QList<QObject*> acsblNodeList READ acsblNodeList NOTIFY acsblNodeListChanged)
 
 private:
@@ -145,6 +146,7 @@ private:
     QString m_className;
     QString m_tag;
     QString m_page;
+    QString m_message;
     QString m_acsblNodeListStr;
     QList<QObject*> m_acsblNodeList;
 
@@ -188,6 +190,9 @@ public:
         if(logJObj.contains("page")){
             m_page = logJObj.value("page").toString();
         }
+        if(logJObj.contains("message")){
+            m_message = logJObj.value("message").toString();
+        }
         if(logJObj.contains("screenInfo")){
             m_acsblNodeListStr = logJObj.value("screenInfo").toString();
             QJsonArray array = QJsonDocument::fromJson(m_acsblNodeListStr.toLocal8Bit()).array();
@@ -219,6 +224,7 @@ public:
     QString className() const {return m_className;}
     QString tag() const {return m_tag;}
     QString page() const {return m_page;}
+    QString message() const {return m_message;}
     QList<QObject*> acsblNodeList() const {return m_acsblNodeList;}
 
 signals:
@@ -231,6 +237,7 @@ signals:
     void tagChanged();
     void pageChanged();
     void acsblNodeListChanged();
+    void messageChanged();
 };
 
 class AppModel : public QObject

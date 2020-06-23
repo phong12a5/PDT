@@ -62,6 +62,23 @@ ListView {
         }
 
         Rectangle{
+            id: messageView
+            anchors.fill: parent
+            visible: false
+            Flickable {
+                anchors.fill: parent
+                contentHeight: mess.contentHeight
+                Text {
+                    id: mess
+                    text: modelData.message
+                    width: parent.width
+                    height: contentHeight
+                    Component.onCompleted: console.log("onCompleted: " + text)
+                }
+            }
+        }
+
+        Rectangle{
             id: processBtn
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.right
@@ -81,6 +98,30 @@ ListView {
                 anchors.fill: parent
                 onClicked: {
                     processLog(index)
+                }
+            }
+        }
+
+        Rectangle{
+            id: viewLogBtn
+            anchors.top: processBtn.bottom
+            anchors.topMargin: 20
+            anchors.horizontalCenter: parent.right
+            anchors.horizontalCenterOffset: - (nodeList.anchors.rightMargin + scrollBarBg.width)/2
+            width: 90
+            height: 40
+            color: messMouse.pressed? "#20B2AA" : "#87CEFA"
+            radius: 6
+            opacity: 0.7
+            PText {
+                text: messageView.visible? qsTr("Hide messages"): qsTr("View messages")
+                anchors.centerIn: parent
+            }
+            MouseArea{
+                id: messMouse
+                anchors.fill: parent
+                onClicked: {
+                    messageView.visible = !messageView.visible
                 }
             }
         }
