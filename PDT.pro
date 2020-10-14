@@ -49,8 +49,9 @@ win32 {
 }
 
 macx {
+    DISTFILES += MACOS
     INCLUDEPATH += $$PWD/macosx/include
-    LIBS += -L$$PWD/macosx/libs -lchilkat_i386 -lchilkat_x86_64
+    LIBS += -L$$PWD/macosx/libs -lchilkat_x86_64
 }
 
 

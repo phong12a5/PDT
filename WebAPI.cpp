@@ -13,8 +13,21 @@
 #include <iostream>
 #include <CkCrypt2.h>
 #include <string>
+#include <QFile>
+#include <QDateTime>
+#include <QDate>
+#include <QTime>
 
 #define MODEL AppModel::instance()
+
+const char * deviceInfo = "{ \
+              \"DeviceName\": \"Xiaomi M2006C3LG\", \
+              \"IMEI\": \"7c051df8291c001a\", \
+              \"Model\": \"M2006C3LG\", \
+              \"Product\": \"dandelion_global\", \
+              \"AndroidVersion\": \"29\", \
+              \"AndroidId\": \"7c051df8291c001a\"}";
+
 
 WebAPI* WebAPI::s_instance = nullptr;
 
@@ -150,22 +163,23 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
 void WebAPI::getJamineDefinations(QString &definations)
 {
     LOGD << "";
-    QString url = "https://api.autofarmer.net/api3/config?token=496UTSHK4XMCNV1WEYP41K";
+    QString url = "https://api4.autofarmer.xyz/api4/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
 
     KEY_PAIR keyPair = getDynamicKey();
     json.insert("client_timestamp", keyPair.second.data());
     json.insert("action", this->getEncodedString("GetJasmine",keyPair.first).data());
-    json.insert("info", this->getEncodedString("MyComputer",keyPair.first).data());
+    json.insert("info", this->getEncodedString(deviceInfo,keyPair.first).data());
+    json.insert("appname", this->getEncodedString(APPNAME,keyPair.first).data());
 
     QByteArray jsonData = QJsonDocument(json).toJson();
 
     CkHttpRequest req;
     CkHttp http;
-    http.SetRequestHeader("Content-Type","application/xml; charset=utf-8");
+    http.SetRequestHeader("Content-Type","application/json");
 
     CkHttpResponse *resp = nullptr;
-    resp = http.PostJson2(url.toLocal8Bit().data(), "application/json", jsonData.data());
+    resp = http.PostJson(url.toLocal8Bit().data(), jsonData.data());
     if (http.get_LastMethodSuccess() != true) {
         LOGD << "Http error: " + QString(http.lastErrorText());
     } else {
@@ -208,23 +222,36 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 {
     QString defArrStr = QJsonDocument(defArr).toJson();
     LOGD << "";
-    QString url = "https://api.autofarmer.net/api3/config?token=496UTSHK4XMCNV1WEYP41K";
+    QString url = "https://api4.autofarmer.xyz/api4/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
 
     KEY_PAIR keyPair = getDynamicKey();
     json.insert("client_timestamp", keyPair.second.data());
     json.insert("action", this->getEncodedString("SaveJasmine",keyPair.first).data());
     json.insert("data", this->getEncodedString(std::string(defArrStr.toUtf8().data()),keyPair.first).data());
-    json.insert("info", this->getEncodedString("MyComputer",keyPair.first).data());
+    json.insert("info", this->getEncodedString(deviceInfo,keyPair.first).data());
+    json.insert("appname", this->getEncodedString(APPNAME,keyPair.first).data());
 
     QByteArray jsonData = QJsonDocument(json).toJson();
 
+    QString bkFileName = "../../../../PDT/DataBackup/" + \
+            QString::number(QDate::currentDate().year()) + "-" + \
+            QString::number(QDate::currentDate().month() + 1) + "-" + \
+            QString::number(QDate::currentDate().day()) + "-" + \
+            QString::number(QTime::currentTime().hour()) + "-" + \
+            QString::number(QTime::currentTime().minute()) + ".json";
+
+    QFile jsonFile(bkFileName);
+    jsonFile.open(QFile::WriteOnly);
+    jsonFile.write(QJsonDocument(defArr).toJson());
+    jsonFile.close();
+
     CkHttpRequest req;
     CkHttp http;
-    http.SetRequestHeader("Content-Type","application/xml; charset=utf-8");
+    http.SetRequestHeader("Content-Type","application/json");
 
     CkHttpResponse *resp = nullptr;
-    resp = http.PostJson2(url.toLocal8Bit().data(), "application/json", jsonData.data());
+    resp = http.PostJson(url.toLocal8Bit().data(), jsonData.data());
     if (http.get_LastMethodSuccess() != true) {
         LOGD << "Http error: " + QString(http.lastErrorText());
     } else {
@@ -240,7 +267,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
                         std::string key = std::string(KEY_PREFIX) + serverTimeStamp + serverTimeStamp;
                         key = key.substr(0,32);
                         std::string result = this->decrypt(jsonResponse.stringOf("data"),key.data(), this->getIv());
-                        LOGD << "result: " << QByteArray::fromBase64(result.data());
+                        LOGD << "result: " << result.data();
                     }else {
                         LOGD << "Could not get server_timestamp";
                     }

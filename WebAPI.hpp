@@ -7,6 +7,10 @@
 
 #define KEY_PAIR        std::pair<std::string,std::string>
 #define KEY_PREFIX      "Congaubeo@123"
+#define FACEBOOK_APP    "facebook"
+#define INSTAGRAM_APP   "instagram"
+#define COMMON_APP      "common"
+#define APPNAME         INSTAGRAM_APP
 
 class WebAPI : public QObject
 {
