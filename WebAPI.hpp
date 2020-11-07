@@ -10,7 +10,7 @@
 #define FACEBOOK_APP    "facebook"
 #define INSTAGRAM_APP   "instagram"
 #define COMMON_APP      "common"
-#define APPNAME         INSTAGRAM_APP
+#define APPNAME         FACEBOOK_APP
 
 class WebAPI : public QObject
 {

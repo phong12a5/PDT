@@ -153,7 +153,7 @@ private:
 public:
     explicit LogElement(int index, QJsonObject logElement) {
         m_index = index;
-        QJsonObject logJObj = QJsonDocument::fromJson(logElement.value("info").toString().toLocal8Bit().data()).object();
+        QJsonObject logJObj = logElement;//QJsonDocument::fromJson(logElement.value("info").toString().toLocal8Bit().data()).object();
         QString content = logElement.value("image1").toString();
         QByteArray imageData = QByteArray::fromBase64(content.toUtf8());
         QString imgpath = QDir::currentPath() + QString("/images/page_%1.png").arg(m_index);

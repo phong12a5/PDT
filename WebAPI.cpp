@@ -128,7 +128,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
 
     CkHttpRequest req;
     CkHttp http;
-    http.SetRequestHeader("Content-Type","application/xml; charset=utf-8");
+    http.SetRequestHeader("Content-Type","application/json; charset=utf-8");
 
     CkHttpResponse *resp = nullptr;
     resp = http.PostJson2(url.toLocal8Bit().data(), "application/json", jsonData.data());
@@ -139,16 +139,24 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
             CkJsonObject jsonResponse;
             bool loadJson = jsonResponse.Load(resp->bodyStr());
             if (loadJson) {
-                const char * data = jsonResponse.stringOf("data");
-                QJsonDocument doc = QJsonDocument::fromJson(data);
-                if(doc.isArray()) {
-                    QJsonArray arr = doc.array();
-                    for (int j = 0; j < arr.size(); j++) {
-                        QJsonObject obj = arr.at(j).toObject();
-//                        std::cout << QString(QJsonDocument(obj).toJson()).toUtf8().data() << std::endl;
-//                        LOGD << " ---------------------------------------------------- ";
-                        dataContainer.append(obj);
+                CkJsonArray* dataArr = jsonResponse.ArrayOf("data");
+                if(dataArr) {
+                    LOGD << "dataArr: " << dataArr->get_Size();
+                    for(int i = 0; i < dataArr->get_Size(); i++ ){
+                        CkJsonObject* recordObj = dataArr->ObjectAt(i);
+                        QJsonObject recordQObj;
+                        recordQObj["token"] = recordObj->stringOf("token");
+                        recordQObj["dateTime"] = recordObj->stringOf("dateTime");
+                        recordQObj["info"] = recordObj->stringOf("info");
+                        recordQObj["devicename"] = recordObj->stringOf("devicename");
+                        recordQObj["module"] = recordObj->stringOf("module");
+                        recordQObj["tag"] = recordObj->stringOf("tag");
+                        recordQObj["page"] = recordObj->stringOf("page");
+                        recordQObj["message"] = recordObj->stringOf("message");
+                        recordQObj["screenInfo"] = recordObj->stringOf("screenInfo");
+                        dataContainer.append(recordQObj);
                     }
+                    LOGD << "dataContainer: " << dataContainer.size();
                 }
             } else {
                 LOGD << "Could not load resp->bodyStr() -> JsonObject";
@@ -173,6 +181,13 @@ void WebAPI::getJamineDefinations(QString &definations)
     json.insert("appname", this->getEncodedString(APPNAME,keyPair.first).data());
 
     QByteArray jsonData = QJsonDocument(json).toJson();
+
+    QFile file("/Users/PhongDang/Temp/GetJasmine.txt");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << jsonData;
+        file.close();
+    }
 
     CkHttpRequest req;
     CkHttp http;
@@ -233,6 +248,13 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     json.insert("appname", this->getEncodedString(APPNAME,keyPair.first).data());
 
     QByteArray jsonData = QJsonDocument(json).toJson();
+
+    QFile file("/Users/PhongDang/Temp/SaveJasmine.txt");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << jsonData;
+        file.close();
+    }
 
     QString bkFileName = "../../../../PDT/DataBackup/" + \
             QString::number(QDate::currentDate().year()) + "-" + \

@@ -42,6 +42,7 @@ void AppModel::insertPageDefinations(QJsonObject pageObj)
 {
     if(!pageObj.isEmpty()) {
         m_definationMap.insert(pageObj.value("page").toString(),pageObj);
+        LOGD << "Page: " << pageObj.value("page").toString();
         emit listPageIDChanged();
     }
 }
