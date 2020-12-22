@@ -128,6 +128,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: width/2 + 20
         model: AppModel.listLanguage
+//        currentIndex: AppModel.listLanguage.indexOf("Tiếng Việt")
         currentIndex: AppModel.listLanguage.indexOf("English")
         delegate: ItemDelegate {
             width: langInput.width
@@ -202,6 +203,7 @@ Rectangle {
     }
 
     function show() {
+//        langInput.currentIndex = AppModel.listLanguage.indexOf("Tiếng Việt")
         langInput.currentIndex = AppModel.listLanguage.indexOf("English")
         showAnimation.start()
     }

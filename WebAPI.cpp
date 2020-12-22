@@ -127,8 +127,9 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
     QByteArray jsonData = QJsonDocument(json).toJson();
 
     CkHttpRequest req;
-    CkHttp http;
-    http.SetRequestHeader("Content-Type","application/json; charset=utf-8");
+    CkHttp http ;
+    http.put_Utf8(true);
+    http.SetRequestHeader("Content-Type","application/json");
 
     CkHttpResponse *resp = nullptr;
     resp = http.PostJson2(url.toLocal8Bit().data(), "application/json", jsonData.data());
@@ -137,6 +138,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
     } else {
         if (resp->bodyStr()) {
             CkJsonObject jsonResponse;
+            jsonResponse.put_Utf8(true);
             bool loadJson = jsonResponse.Load(resp->bodyStr());
             if (loadJson) {
                 CkJsonArray* dataArr = jsonResponse.ArrayOf("data");
@@ -246,6 +248,18 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     json.insert("data", this->getEncodedString(std::string(defArrStr.toUtf8().data()),keyPair.first).data());
     json.insert("info", this->getEncodedString(deviceInfo,keyPair.first).data());
     json.insert("appname", this->getEncodedString(APPNAME,keyPair.first).data());
+
+
+    /*
+    QByteArray content;
+    QFile bkFile("../../../../PDT/DataBackup/2020-13-22-18-54.json");
+    if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        content = bkFile.readAll();
+        if(!content.isNull() && !content.isEmpty()){
+            json.insert("data", this->getEncodedString(std::string(content.data()),keyPair.first).data());
+        }
+    }
+    */
 
     QByteArray jsonData = QJsonDocument(json).toJson();
 

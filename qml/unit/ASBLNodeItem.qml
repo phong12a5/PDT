@@ -136,7 +136,8 @@ Rectangle {
                 width: parent.width
                 height: keywordInput.activeFocus? contentHeight: 0.1
                 visible: keywordInput.activeFocus
-                model: !visible? undefined : AppModel.getListIDComponent(pageIDInput.text, langInput.currentText)
+//                model: !visible? undefined : AppModel.getListIDComponent(pageIDInput.text, "Tiếng Việt")
+                model: !visible? undefined : AppModel.getListIDComponent(pageIDInput.text, "English")
                 delegate: Rectangle{
                     width: parent.width
                     height: 15
