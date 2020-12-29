@@ -202,6 +202,7 @@ void WebAPI::getJamineDefinations(QString &definations)
     } else {
         if (resp->bodyStr()) {
             CkJsonObject jsonResponse;
+            jsonResponse.put_Utf8(true);
             bool loadJson = jsonResponse.Load(resp->bodyStr());
             if (loadJson) {
                 jsonResponse.put_EmitCompact(false);
@@ -252,7 +253,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 
     /*
     QByteArray content;
-    QFile bkFile("../../../../PDT/DataBackup/2020-13-22-18-54.json");
+    QFile bkFile("../../../../PDT/DataBackup/jasmine.json");
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         content = bkFile.readAll();
         if(!content.isNull() && !content.isEmpty()){
