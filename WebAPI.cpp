@@ -246,18 +246,18 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     KEY_PAIR keyPair = getDynamicKey();
     json.insert("client_timestamp", keyPair.second.data());
     json.insert("action", this->getEncodedString("SaveJasmine",keyPair.first).data());
-    json.insert("data", this->getEncodedString(std::string(defArrStr.toUtf8().data()),keyPair.first).data());
+    json.insert("data", this->getEncodedString(std::string(defArrStr.toUtf8().toBase64()),keyPair.first).data());
     json.insert("info", this->getEncodedString(deviceInfo,keyPair.first).data());
     json.insert("appname", this->getEncodedString(APPNAME,keyPair.first).data());
 
 
     /*
-    QByteArray content;
+    QString content;
     QFile bkFile("../../../../PDT/DataBackup/jasmine.json");
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         content = bkFile.readAll();
         if(!content.isNull() && !content.isEmpty()){
-            json.insert("data", this->getEncodedString(std::string(content.data()),keyPair.first).data());
+            json.insert("data", this->getEncodedString(std::string(content.toUtf8().toBase64()),keyPair.first).data());
         }
     }
     */
