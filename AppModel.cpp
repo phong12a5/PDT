@@ -42,7 +42,6 @@ void AppModel::insertPageDefinations(QJsonObject pageObj)
 {
     if(!pageObj.isEmpty()) {
         m_definationMap.insert(pageObj.value("page").toString(),pageObj);
-        LOGD << "Page: " << pageObj.value("page").toString();
         emit listPageIDChanged();
     }
 }
@@ -127,9 +126,9 @@ void AppModel::getJamineDefinations()
     }
 }
 
-void AppModel::updateJamineDefinations(QString pageID, QString language, QList<QObject *> nodeList)
+void AppModel::updateJamineDefinations(QString appName, QString pageID, QString language, QList<QObject *> nodeList)
 {
-    LOGD << "pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
+    LOGD << "appName: " << appName << " -- pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
     if(pageID == "PAGE_UNKNOWN") {
         LOGD << "Reject PAGE_UNKNOWN";
         QMessageBox Msgbox;
@@ -157,14 +156,15 @@ void AppModel::updateJamineDefinations(QString pageID, QString language, QList<Q
         definationsField.insert(language,arrEdidenceByLange);
         pageObj.insert("definitons",definationsField);
         pageObj.insert("page",pageID);
+        pageObj.insert("appname",appName);
         LOGD << "pageObj: " << pageObj;
         insertPageDefinations(pageObj);
     }
 }
 
-void AppModel::updateJamineKeyword(QString pageID, QString language, QList<QObject *> nodeList)
+void AppModel::updateJamineKeyword(QString appName, QString pageID, QString language, QList<QObject *> nodeList)
 {
-    LOGD << "pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
+    LOGD << "appName: " << appName << " -- pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
     if(pageID == "PAGE_UNKNOWN") {
         LOGD << "Reject PAGE_UNKNOWN";
         QMessageBox Msgbox;
@@ -192,6 +192,7 @@ void AppModel::updateJamineKeyword(QString pageID, QString language, QList<QObje
         keywordsField.insert(language,arrKeywordByLang);
         pageObj.insert("keywords",keywordsField);
         pageObj.insert("page",pageID);
+        pageObj.insert("appname",appName);
         LOGD << "pageObj: " << pageObj;
         insertPageDefinations(pageObj);
     }

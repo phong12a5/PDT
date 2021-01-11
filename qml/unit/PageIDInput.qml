@@ -31,12 +31,4 @@ Item {
         height: parent.height
         placeholderText: qsTr("Enter Page ID")
     }
-
-    PText {
-        id: name
-        text: qsTr("Page ID:")
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.left
-        anchors.rightMargin: 10
-    }
 }

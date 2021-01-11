@@ -155,7 +155,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
                         recordQObj["tag"] = recordObj->stringOf("tag");
                         recordQObj["page"] = recordObj->stringOf("page");
                         recordQObj["message"] = recordObj->stringOf("message");
-                        recordQObj["screenInfo"] = recordObj->stringOf("screenInfo");
+                        recordQObj["screenInfo"] = recordObj->stringOf("screeninfo");
                         dataContainer.append(recordQObj);
                     }
                     LOGD << "dataContainer: " << dataContainer.size();

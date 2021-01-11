@@ -1,0 +1,96 @@
+[
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Create New Account"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log In"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_LOGIN_BTN",
+                    "selected": false,
+                    "text": "Log In"
+                }
+            ]
+        },
+        "page": "PAGE_INSTAGRAM_WELCOME"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log In"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Forgot your login details? Get help signing in."
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_EMAIL_FIELD",
+                    "selected": false,
+                    "text": "Phone number, email or username"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_PASSWORD_FIELD",
+                    "selected": false,
+                    "text": "Password"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_LOGIN_BTN",
+                    "selected": false,
+                    "text": "Log In"
+                }
+            ]
+        },
+        "page": "SCREEN_INSTAGRAM_LOGIN"
+    }
+]

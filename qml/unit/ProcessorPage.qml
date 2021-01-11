@@ -11,6 +11,7 @@ Rectangle {
     property int _COLLECT_EVIDENCE_TAB: 0
     property int _COLLECT_KEYWORD_TAB: 1
     property int index: -1
+    property var appModel: ["Facebook","Instagram","Youtube","Common"]
 
     signal resetCheckState()
     MouseArea{
@@ -108,6 +109,28 @@ Rectangle {
         }
     }
 
+    ComboBox{
+        id: appInput
+        width: 300
+        height: 40
+        anchors.top: nodeList.bottom
+        anchors.topMargin: 20
+        anchors.right: pageIDInput.left
+        anchors.rightMargin: 50
+        model: appModel
+        delegate: ItemDelegate {
+            width: langInput.width
+            contentItem: Text {
+                text: appModel[index]
+                color: appInput.highlightedIndex === index? "#000000" : "#21be2b"
+                font: appInput.font
+                elide: Text.ElideRight
+                verticalAlignment: Text.AlignVCenter
+            }
+            highlighted: appInput.highlightedIndex === index
+        }
+    }
+
     PageIDInput{
         id: pageIDInput
         width: 300
@@ -115,7 +138,6 @@ Rectangle {
         anchors.top: nodeList.bottom
         anchors.topMargin: 20
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: - (width/2 + 20)
         text: info !== undefined? info.page : ""
     }
 
@@ -125,8 +147,8 @@ Rectangle {
         height: 40
         anchors.top: nodeList.bottom
         anchors.topMargin: 20
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: width/2 + 20
+        anchors.left: pageIDInput.right
+        anchors.leftMargin: 50
         model: AppModel.listLanguage
 //        currentIndex: AppModel.listLanguage.indexOf("Tiếng Việt")
         currentIndex: AppModel.listLanguage.indexOf("English")
@@ -142,6 +164,7 @@ Rectangle {
             highlighted: langInput.highlightedIndex === index
         }
     }
+
 
     PButton{
         id: closeBtn
@@ -167,9 +190,9 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked: {
             if(currentTab == _COLLECT_EVIDENCE_TAB)
-                AppModel.updateJamineDefinations(pageIDInput.text,langInput.currentText,getListSelectedItem());
+                AppModel.updateJamineDefinations(appModel[appInput.currentIndex], pageIDInput.text,langInput.currentText,getListSelectedItem());
             else
-                AppModel.updateJamineKeyword(pageIDInput.text,langInput.currentText,getListSelectedItem());
+                AppModel.updateJamineKeyword(appModel[appInput.currentIndex], pageIDInput.text,langInput.currentText,getListSelectedItem());
         }
     }
 

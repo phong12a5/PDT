@@ -1,0 +1,226 @@
+[
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "Follow",
+                        "selected": false,
+                        "text": "Follow"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.ImageView",
+                        "clickable": true,
+                        "contentDescription": "Back",
+                        "selected": false,
+                        "text": "null"
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.Button",
+                        "clickable": true,
+                        "contentDescription": "Following",
+                        "selected": false,
+                        "text": "Following"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "Follow",
+                    "keyword": "ID_FOLLOW_BTN",
+                    "selected": false,
+                    "text": "Follow"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.Button",
+                    "clickable": true,
+                    "contentDescription": "Following",
+                    "keyword": "ID_FOLLOWING_BTN",
+                    "selected": false,
+                    "text": "Following"
+                }
+            ]
+        },
+        "page": "SCREEN_INSTAGRAM_ANOTHER_PROFILE"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.ImageView",
+                        "clickable": true,
+                        "contentDescription": "Camera",
+                        "selected": false,
+                        "text": "null"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.FrameLayout",
+                        "clickable": true,
+                        "contentDescription": "Home",
+                        "selected": true,
+                        "text": "null"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.ImageView",
+                    "clickable": true,
+                    "contentDescription": "Like",
+                    "keyword": "ID_LIKE_BTN",
+                    "selected": false,
+                    "text": "null"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.ImageView",
+                    "clickable": true,
+                    "contentDescription": "Liked",
+                    "keyword": "ID_LIKED_BTN",
+                    "selected": true,
+                    "text": "null"
+                }
+            ]
+        },
+        "page": "SCREEN_INSTAGRAM_HOME"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log In"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Forgot your login details? Get help signing in."
+                    }
+                ],
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log In"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "OR"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": false,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log in with Facebook"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_EMAIL_FIELD",
+                    "selected": false,
+                    "text": "Phone number, email or username"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.EditText",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_PASSWORD_FIELD",
+                    "selected": false,
+                    "text": "Password"
+                },
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": false,
+                    "contentDescription": "null",
+                    "keyword": "ID_LOGIN_BTN",
+                    "selected": false,
+                    "text": "Log In"
+                }
+            ]
+        },
+        "page": "SCREEN_INSTAGRAM_LOGIN"
+    },
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Create New Account"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log In"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_LOGIN_BTN",
+                    "selected": false,
+                    "text": "Log In"
+                }
+            ]
+        },
+        "page": "SCREEN_INSTAGRAM_WELCOME"
+    }
+]

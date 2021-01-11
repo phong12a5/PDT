@@ -1,0 +1,40 @@
+[
+    {
+        "definitons": {
+            "English": [
+                [
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Create New Account"
+                    },
+                    {
+                        "checked": false,
+                        "className": "android.widget.TextView",
+                        "clickable": true,
+                        "contentDescription": "null",
+                        "selected": false,
+                        "text": "Log In"
+                    }
+                ]
+            ]
+        },
+        "keywords": {
+            "English": [
+                {
+                    "checked": false,
+                    "className": "android.widget.TextView",
+                    "clickable": true,
+                    "contentDescription": "null",
+                    "keyword": "ID_LOGIN_BTN",
+                    "selected": false,
+                    "text": "Log In"
+                }
+            ]
+        },
+        "page": "PAGE_INSTAGRAM_WELCOME"
+    }
+]

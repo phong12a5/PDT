@@ -265,8 +265,8 @@ public:
     Q_INVOKABLE void getLogFromServer();
     Q_INVOKABLE void saveResult();
     Q_INVOKABLE void getJamineDefinations();
-    Q_INVOKABLE void updateJamineDefinations(QString pageID, QString language, QList<QObject*> nodeList);
-    Q_INVOKABLE void updateJamineKeyword(QString pageID, QString language, QList<QObject*> nodeList);
+    Q_INVOKABLE void updateJamineDefinations(QString appName, QString pageID, QString language, QList<QObject*> nodeList);
+    Q_INVOKABLE void updateJamineKeyword(QString appName, QString pageID, QString language, QList<QObject*> nodeList);
     Q_INVOKABLE QStringList getListIDComponent(QString pageID, QString language);
 signals:
     void listLogRecordChanged();
