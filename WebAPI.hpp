@@ -4,6 +4,7 @@
 #include <QObject>
 #include <iostream>
 #include <QMap>
+#include <CkJsonObject.h>
 
 #define KEY_PAIR        std::pair<std::string,std::string>
 #define KEY_PREFIX      "Congaubeo@123"
@@ -19,12 +20,16 @@ class WebAPI : public QObject
 private:
     explicit WebAPI(QObject *parent = nullptr);
 
+    QString md5(QString input);
     std::string getCurrentTime();
     std::pair<std::string, std::string> getDynamicKey();
     std::string getEncodedString(std::string input, std::string key);
     std::string encrypt(const char *input, const char *key, const char *iv) ;
     std::string decrypt(const char *input, const char *key, const char *iv);
+    std::string encryptTimestamp(const std::string &timestamp, const std::string &token);
+    std::string decryptTimestamp(const std::string &timestamp, const std::string &token);
     const char * getIv();
+    bool sendRequest(QJsonObject &bodyData, QJsonObject &response, const char *api, QMap<QString, QString> headers);
 public:
     static WebAPI *instance();
 

@@ -11,7 +11,7 @@ Rectangle {
     property int _COLLECT_EVIDENCE_TAB: 0
     property int _COLLECT_KEYWORD_TAB: 1
     property int index: -1
-    property var appModel: ["Facebook","Instagram","Youtube","Common"]
+    property var appModel: ["Facebook","Instagram","Youtube", "Tiktok" ,"Common"]
 
     signal resetCheckState()
     MouseArea{
