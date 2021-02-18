@@ -11,8 +11,7 @@ AppMain::AppMain(QObject *parent) :
     QObject(parent)
 {
     LOGD << "CREATED";
-    QString def;
-    APP_MODEL->getJamineDefinations();
+     APP_MODEL->getJamineDefinations();
 }
 
 AppMain::~AppMain()

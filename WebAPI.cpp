@@ -361,13 +361,10 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     QJsonObject json;
 
     /*
-    QString content;
-    QFile bkFile("../../../../PDT/DataBackup/jasmine.json");
+    QFile bkFile("../../../../PDT/DataBackup/2021-3-16-9-49.json");
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        content = bkFile.readAll();
-        if(!content.isNull() && !content.isEmpty()){
-            json.insert("data", this->getEncodedString(std::string(content.toUtf8().toBase64()),keyPair.first).data());
-        }
+        defArrStr = bkFile.readAll();
+        LOGD << "defArrStr: " << defArrStr;
     }
     */
 
@@ -380,7 +377,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 
     QFile jsonFile(bkFileName);
     jsonFile.open(QFile::WriteOnly);
-    jsonFile.write(QJsonDocument(defArr).toJson());
+    jsonFile.write(defArrStr.toUtf8());
     jsonFile.close();
 
     QJsonObject bodyData, response;
