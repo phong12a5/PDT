@@ -129,10 +129,10 @@ void AppModel::getJamineDefinations()
 void AppModel::updateJamineDefinations(QString appName, QString pageID, QString language, QList<QObject *> nodeList)
 {
     LOGD << "appName: " << appName << " -- pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
-    if(pageID == "PAGE_UNKNOWN") {
-        LOGD << "Reject PAGE_UNKNOWN";
+    if(pageID == "SCREEN_UNKNOWN") {
+        LOGD << "Reject SCREEN_UNKNOWN";
         QMessageBox Msgbox;
-        Msgbox.setText("Reject PAGE_UNKNOWN!");
+        Msgbox.setText("Reject SCREEN_UNKNOWN!");
         Msgbox.exec();
         return;
     }
