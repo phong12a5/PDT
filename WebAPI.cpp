@@ -360,13 +360,13 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     QString url = "https://api4.autofarmer.xyz/api4/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
 
-    /*
-    QFile bkFile("../../../../PDT/DataBackup/2021-3-16-9-49.json");
+#if 0
+    QFile bkFile("../../../../PDT/DataBackup/2021-4-16-14-29.json");
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         defArrStr = bkFile.readAll();
         LOGD << "defArrStr: " << defArrStr;
     }
-    */
+#endif
 
     QString bkFileName = "../../../../PDT/DataBackup/" + \
             QString::number(QDate::currentDate().year()) + "-" + \
