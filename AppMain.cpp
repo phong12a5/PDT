@@ -2,6 +2,7 @@
 #include <WebAPI.hpp>
 #include <QFile>
 #include <QJsonDocument>
+#include <QMessageBox>
 
 #define APP_MODEL   AppModel::instance()
 #define APP_CTRL    AppController::instance()
@@ -11,7 +12,13 @@ AppMain::AppMain(QObject *parent) :
     QObject(parent)
 {
     LOGD << "CREATED";
-     APP_MODEL->getJamineDefinations();
+    if(WEB_API->upsertDevice()) {
+        APP_MODEL->getJamineDefinations();
+    } else {
+        QMessageBox Msgbox;
+        Msgbox.setText("Upser device failed");
+        Msgbox.exec();
+    }
 }
 
 AppMain::~AppMain()

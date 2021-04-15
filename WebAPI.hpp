@@ -40,6 +40,7 @@ public:
     void getJasmineLog(QList<QJsonObject> &dataContainer);
     void getJamineDefinations(QString& definations);
     void saveJamineDefinations(QJsonArray& defArr);
+    bool upsertDevice();
 
     signals:
 };

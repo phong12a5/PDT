@@ -31,6 +31,7 @@ WebAPI::WebAPI(QObject *parent) : QObject(parent)
     // Do nothing
     deviceInfo["AndroidId"] = "DESKTOP";
     deviceInfo["IMEI"] = "IMEI";
+    deviceInfo["MacAddress"] = "XXXXXXXXXXX";
 }
 
 WebAPI *WebAPI::instance()
@@ -361,14 +362,14 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     QJsonObject json;
 
 #if 0
-    QFile bkFile("../../../../PDT/DataBackup/2021-4-16-14-29.json");
+    QFile bkFile("../../../../PDT/DataBackup/2021-5-15-18-16.json");
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         defArrStr = bkFile.readAll();
         LOGD << "defArrStr: " << defArrStr;
     }
 #endif
 
-    QString bkFileName = "../../../../PDT/DataBackup/" + \
+    QString bkFileName = "../../../../PDT/DataBackup/V2_" + \
             QString::number(QDate::currentDate().year()) + "-" + \
             QString::number(QDate::currentDate().month() + 1) + "-" + \
             QString::number(QDate::currentDate().day()) + "-" + \
@@ -388,6 +389,23 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     header.insert("save-jasmine-secret-key","0b21335f-f715-40e1-b312-b099cd87ec4e");
     sendRequest(bodyData, response, "config",header);
     LOGD << "response: " << response;
+}
+
+bool WebAPI::upsertDevice()
+{
+    QJsonObject bodyData, response;
+    bodyData["action"] = "Upsert";
+
+    if (sendRequest(bodyData, response, "config"))
+    {
+        QJsonObject server_data = response["data"].toObject();
+        LOGD << "server_data: " << server_data;
+        if (server_data["code"].toInt() == 200)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 
