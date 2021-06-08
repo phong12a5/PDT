@@ -24,7 +24,7 @@ ListView {
             anchors.top: parent.top
             anchors.topMargin: 5
             anchors.horizontalCenter: nodeList.horizontalCenter
-            text: modelData.page
+            text: modelData.screenId
             color: "#1E90FF"
         }
 

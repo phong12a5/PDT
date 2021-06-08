@@ -138,7 +138,7 @@ Rectangle {
         anchors.top: nodeList.bottom
         anchors.topMargin: 20
         anchors.horizontalCenter: parent.horizontalCenter
-        text: info !== undefined? info.page : ""
+        text: info !== undefined? info.screenId : ""
     }
 
     ComboBox{

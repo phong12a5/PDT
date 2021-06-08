@@ -132,7 +132,7 @@ class LogElement: public QObject
     Q_PROPERTY(QString module READ module NOTIFY moduleChanged)
     Q_PROPERTY(QString className READ className NOTIFY classNameChanged)
     Q_PROPERTY(QString tag READ tag NOTIFY tagChanged)
-    Q_PROPERTY(QString page READ page NOTIFY pageChanged)
+    Q_PROPERTY(QString screenId READ screenId NOTIFY screenIdChanged)
     Q_PROPERTY(QString message READ message NOTIFY messageChanged)
     Q_PROPERTY(QList<QObject*> acsblNodeList READ acsblNodeList NOTIFY acsblNodeListChanged)
 
@@ -145,7 +145,7 @@ private:
     QString m_module;
     QString m_className;
     QString m_tag;
-    QString m_page;
+    QString m_screenId;
     QString m_message;
     QString m_acsblNodeListStr;
     QList<QObject*> m_acsblNodeList;
@@ -166,35 +166,13 @@ public:
             img.save(imgpath);
         }
 
-        if(logJObj.contains("token")){
-            m_token = logJObj.value("token").toString();
+
+        if(logJObj.contains("screen_id")){
+            m_screenId = logJObj.value("screen_id").toString();
         }
-        if(logJObj.contains("dateTime")){
-            m_dateTime = logJObj.value("dateTime").toString();
-        }
-        if(logJObj.contains("info")){
-            m_info = logJObj.value("info").toString();
-        }
-        if(logJObj.contains("devicename")){
-            m_deviceName = logJObj.value("devicename").toString();
-        }
-        if(logJObj.contains("module")){
-            m_module = logJObj.value("module").toString();
-        }
-        if(logJObj.contains("class")){
-            m_className = logJObj.value("class").toString();
-        }
-        if(logJObj.contains("tag")){
-            m_tag = logJObj.value("tag").toString();
-        }
-        if(logJObj.contains("page")){
-            m_page = logJObj.value("page").toString();
-        }
-        if(logJObj.contains("message")){
-            m_message = logJObj.value("message").toString();
-        }
-        if(logJObj.contains("screenInfo")){
-            m_acsblNodeListStr = logJObj.value("screenInfo").toString();
+
+        if(logJObj.contains("screen_info")){
+            m_acsblNodeListStr = logJObj.value("screen_info").toString();
             QJsonArray array = QJsonDocument::fromJson(m_acsblNodeListStr.toLocal8Bit()).array();
             qDeleteAll(m_acsblNodeList);
             m_acsblNodeList.clear();
@@ -223,7 +201,7 @@ public:
     QString module() const {return m_module;}
     QString className() const {return m_className;}
     QString tag() const {return m_tag;}
-    QString page() const {return m_page;}
+    QString screenId() const { LOGD << m_screenId; return m_screenId;}
     QString message() const {return m_message;}
     QList<QObject*> acsblNodeList() const {return m_acsblNodeList;}
 
@@ -235,7 +213,7 @@ signals:
     void moduleChanged();
     void classNameChanged();
     void tagChanged();
-    void pageChanged();
+    void screenIdChanged();
     void acsblNodeListChanged();
     void messageChanged();
 };
