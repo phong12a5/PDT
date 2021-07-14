@@ -377,7 +377,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
     json.insert("created_source", "android_phong");
     json.insert("page", 1);
     json.insert("limit", 20);
-    json.insert("android_id", "1a32b847c8f3e8ed");
+    json.insert("android_id", DEVICE_ID);
 
     QByteArray jsonData = QJsonDocument(json).toJson();
 
@@ -556,8 +556,8 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     QString url = "https://api4.autofarmer.xyz/api4/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
 
-#if 0
-    QFile bkFile("../../../../PDT/DataBackup/2021-5-15-18-16.json");
+#if LOCAL_UPLOAD
+    QFile bkFile(QString("../../../../PDT/DataBackup/") + LOCAL_FILE);
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         defArrStr = bkFile.readAll();
         LOGD << "defArrStr: " << defArrStr;

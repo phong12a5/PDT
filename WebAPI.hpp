@@ -11,7 +11,10 @@
 #define FACEBOOK_APP    "facebook"
 #define INSTAGRAM_APP   "instagram"
 #define COMMON_APP      "common"
+#define LOCAL_UPLOAD    0
+#define LOCAL_FILE      "V2_2021-8-10-10-1.json"
 #define APPNAME         FACEBOOK_APP
+#define DEVICE_ID       "6dacad91562f6fb3"
 
 class WebAPI : public QObject
 {
