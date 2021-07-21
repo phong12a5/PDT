@@ -228,13 +228,16 @@ private:
     Q_PROPERTY(QList<QObject*> listLogRecord READ listLogRecord NOTIFY listLogRecordChanged)
     Q_PROPERTY(QStringList listPageID READ listPageID NOTIFY listPageIDChanged)
     Q_PROPERTY(QStringList listLanguage READ listLanguage NOTIFY listLanguageChanged)
+    Q_PROPERTY(QString androidID READ androidID WRITE setAndroidID NOTIFY androidIDChanged)
 public:
     static AppModel* instance();
 
     QList<QObject*> listLogRecord();
     QStringList listPageID() const;
     QStringList listLanguage() const;
+    QString androidID() const;
 
+    void setAndroidID(QString data);
 private:
     void insertPageDefinations(QJsonObject pageObj);
     QJsonObject getPageDefinations(QString pageID);
@@ -250,12 +253,14 @@ signals:
     void listLogRecordChanged();
     void listPageIDChanged();
     void listLanguageChanged();
+    void androidIDChanged();
 
 private:
     static AppModel* m_instance;
 
     QList<QObject*> m_listLogRecord;
     QMap<QString, QJsonObject> m_definationMap;
+    QString m_androidID;
 
 public slots:
 };

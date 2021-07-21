@@ -7,10 +7,14 @@
 #include <QDateTime>
 #include <QDir>
 
+#define DEVICE_ID       "764ac7fc42f75e09"
+
 AppModel* AppModel::m_instance = nullptr;
 
 AppModel::AppModel(QObject *parent) : QObject(parent)
 {
+    m_androidID = DEVICE_ID;
+
     QDir().mkdir(QDir::currentPath() + "/images");
     LOGD << "Created";
 }
@@ -38,6 +42,19 @@ QStringList AppModel::listLanguage() const
     return LANG_MAP.keys();
 }
 
+QString AppModel::androidID() const
+{
+    return m_androidID;
+}
+
+void AppModel::setAndroidID(QString data)
+{
+    if(data != m_androidID) {
+        m_androidID = data;
+        emit androidIDChanged();
+    }
+}
+
 void AppModel::insertPageDefinations(QJsonObject pageObj)
 {
     if(!pageObj.isEmpty()) {
@@ -59,7 +76,7 @@ void AppModel::getLogFromServer()
     emit listLogRecordChanged();
 
     QList<QJsonObject> listRecord;
-    WebAPI::instance()->getJasmineLog(listRecord);
+    WebAPI::instance()->getJasmineLog(listRecord, androidID());
     LOGD << "Record log count: " << listRecord.count();
     if(!listRecord.isEmpty()) {
         foreach(QJsonObject logObj , listRecord) {

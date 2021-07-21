@@ -22,6 +22,7 @@
 #include <CkBinData.h>
 #include <CkTask.h>
 
+
 #define MODEL AppModel::instance()
 
 static QJsonObject deviceInfo;
@@ -368,7 +369,7 @@ bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const cha
 }
 
 
-void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
+void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer, QString androidID)
 {
     LOGD << "";
     QString url = "https://log-internal-api.congaubeo.us/v1/log-screen/search";
@@ -377,7 +378,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer)
     json.insert("created_source", "android_phong");
     json.insert("page", 1);
     json.insert("limit", 20);
-    json.insert("android_id", DEVICE_ID);
+    json.insert("android_id", androidID);
 
     QByteArray jsonData = QJsonDocument(json).toJson();
 

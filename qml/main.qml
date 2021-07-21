@@ -37,6 +37,7 @@ Window {
     }
 
     PButton{
+        id: saveBtn
         text: qsTr("Save Results")
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
@@ -51,6 +52,20 @@ Window {
         anchors.right: showByUnknownCheckbox.left
         anchors.rightMargin: 10
         text: "Show by Unknown page"
+    }
+
+    TextField {
+        id: inputDeviceId
+        anchors.left: saveBtn.right
+        anchors.leftMargin: 50
+        anchors.verticalCenter: saveBtn.verticalCenter
+        width: contentWidth
+        height: 40
+        text: AppModel.androidID
+        placeholderText: qsTr("Enter Android ID")
+        onTextChanged: {
+            AppModel.androidID = text
+        }
     }
 
     CheckBox{

@@ -12,9 +12,8 @@
 #define INSTAGRAM_APP   "instagram"
 #define COMMON_APP      "common"
 #define LOCAL_UPLOAD    0
-#define LOCAL_FILE      "V2_2021-8-10-10-1.json"
+#define LOCAL_FILE      "V2_2021-8-19-15-11.json"
 #define APPNAME         FACEBOOK_APP
-#define DEVICE_ID       "6dacad91562f6fb3"
 
 class WebAPI : public QObject
 {
@@ -40,7 +39,7 @@ private:
     static WebAPI* s_instance;
 
 public:
-    void getJasmineLog(QList<QJsonObject> &dataContainer);
+    void getJasmineLog(QList<QJsonObject> &dataContainer, QString androidID);
     void getJamineDefinations(QString& definations);
     void saveJamineDefinations(QJsonArray& defArr);
     bool upsertDevice();
