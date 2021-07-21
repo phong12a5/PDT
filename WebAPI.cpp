@@ -558,7 +558,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     QJsonObject json;
 
 #if LOCAL_UPLOAD
-    QFile bkFile(QString("../../../../PDT/DataBackup/") + LOCAL_FILE);
+    QFile bkFile(QString("/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Apps/AutoFarmer.XYZ/Definitions backup/") + LOCAL_FILE);
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         defArrStr = bkFile.readAll();
         LOGD << "defArrStr: " << defArrStr;
