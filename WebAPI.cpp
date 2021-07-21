@@ -565,7 +565,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     }
 #endif
 
-    QString bkFileName = "../../../../PDT/DataBackup/V2_" + \
+    QString bkFileName = "/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Apps/AutoFarmer.XYZ/Definitions backup/V2_" + \
             QString::number(QDate::currentDate().year()) + "-" + \
             QString::number(QDate::currentDate().month() + 1) + "-" + \
             QString::number(QDate::currentDate().day()) + "-" + \
