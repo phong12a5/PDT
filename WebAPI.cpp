@@ -21,6 +21,7 @@
 #include <CkPrivateKey.h>
 #include <CkBinData.h>
 #include <CkTask.h>
+#include <QMessageBox>
 
 
 #define MODEL AppModel::instance()
@@ -552,7 +553,7 @@ void WebAPI::getJamineDefinations(QString &definations)
 
 void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 {
-    QString defArrStr = QJsonDocument(defArr).toJson();
+    QByteArray defArrStr = QJsonDocument(defArr).toJson();
     LOGD << "";
     QString url = "https://api4.autofarmer.xyz/api4/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
@@ -561,13 +562,23 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     QFile bkFile(QString("/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Apps/AutoFarmer.XYZ/Definitions backup/") + LOCAL_FILE);
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         defArrStr = bkFile.readAll();
-        LOGD << "defArrStr: " << defArrStr;
+        QJsonDocument document = QJsonDocument().fromJson(defArrStr);
+        QJsonArray arrayDefinition = document.array();
+        if(arrayDefinition.isEmpty()) {
+            QMessageBox Msgbox;
+            Msgbox.setText("Parse error");
+            Msgbox.exec();
+            return;
+        }
+        else {
+            LOGD << "arrayDefinition: " << arrayDefinition;
+        }
     }
-#endif
+#else
 
     QString bkFileName = "/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Apps/AutoFarmer.XYZ/Definitions backup/V2_" + \
             QString::number(QDate::currentDate().year()) + "-" + \
-            QString::number(QDate::currentDate().month() + 1) + "-" + \
+            QString::number(QDate::currentDate().month()) + "-" + \
             QString::number(QDate::currentDate().day()) + "-" + \
             QString::number(QTime::currentTime().hour()) + "-" + \
             QString::number(QTime::currentTime().minute()) + ".json";
@@ -576,10 +587,11 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     jsonFile.open(QFile::WriteOnly);
     jsonFile.write(defArrStr.toUtf8());
     jsonFile.close();
+#endif
 
     QJsonObject bodyData, response;
     bodyData["action"] = "SaveJasmine";
-    bodyData["jasmine_data"] = QString(defArrStr.toUtf8().toBase64());
+    bodyData["jasmine_data"] = QString(defArrStr.toBase64());
 
     QMap<QString,QString> header;
     header.insert("save-jasmine-secret-key","0b21335f-f715-40e1-b312-b099cd87ec4e");
