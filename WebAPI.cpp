@@ -585,7 +585,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 
     QFile jsonFile(bkFileName);
     jsonFile.open(QFile::WriteOnly);
-    jsonFile.write(defArrStr.toUtf8());
+    jsonFile.write(defArrStr);
     jsonFile.close();
 #endif
 

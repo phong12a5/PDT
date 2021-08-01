@@ -249,6 +249,7 @@ public:
     Q_INVOKABLE void updateJamineDefinations(QString appName, QString pageID, QString language, QList<QObject*> nodeList);
     Q_INVOKABLE void updateJamineKeyword(QString appName, QString pageID, QString language, QList<QObject*> nodeList);
     Q_INVOKABLE QStringList getListIDComponent(QString pageID, QString language);
+    Q_INVOKABLE QString getAppNameByScreenID(QString screenId);
 signals:
     void listLogRecordChanged();
     void listPageIDChanged();

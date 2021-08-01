@@ -2,6 +2,9 @@
 
 *.DS_Store
 *.pro.user
+PDT.pro.user
+PDT.pro.user.*
+
 DataBackup/*
 
 # ignore folder

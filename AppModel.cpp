@@ -231,6 +231,11 @@ QStringList AppModel::getListIDComponent(QString pageID, QString language)
     return result;
 }
 
+QString AppModel::getAppNameByScreenID(QString screenID) {
+    QJsonObject pageObj = this->getPageDefinations(screenID);
+    return pageObj.value("appname").toString();
+}
+
 
 
 
