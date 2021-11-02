@@ -44,5 +44,5 @@ void AppMain::saveJson(QJsonDocument document, QString fileName)
     LOGD << "";
     QFile jsonFile(fileName);
     jsonFile.open(QFile::WriteOnly);
-    jsonFile.write(document.toJson());
+    jsonFile.write(document.toJson(QJsonDocument::Compact));
 }

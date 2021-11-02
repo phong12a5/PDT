@@ -97,24 +97,6 @@ void AppModel::saveResult()
     if(!defArr.isEmpty()) {
         WebAPI::instance()->saveJamineDefinations(defArr);
     }
-
-    QString outputFilename = QDir::currentPath() + "/../PDT/DataBackup/"
-                            + QString::number(QDate::currentDate().year()) + "_"
-                            + QString::number(QDate::currentDate().month()) + "_"
-                            + QString::number(QDate::currentDate().day()) + "_"
-                            + QString::number(QTime::currentTime().hour()) + "_"
-                            + QString::number(QTime::currentTime().minute()) + "_"
-                            + QString::number(QTime::currentTime().second()) + ".json";
-    QFile backupFile(outputFilename);
-    if (!backupFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        LOGD << "open fileFail";
-        return;
-    }
-    QTextStream out(&backupFile);
-    QJsonDocument doc;
-    doc.setArray(defArr);
-    out << doc.toJson();
-    backupFile.close();
 }
 
 void AppModel::getJamineDefinations()

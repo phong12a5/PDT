@@ -192,7 +192,7 @@ const char * WebAPI::getIv() {
 bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const char *api, QMap<QString, QString> headers = QMap<QString,QString>())
 {
     bool success = false;
-    QString url = QString("https://api5.autofarmer.net/cgi-bin/autofarmer5.api?api=%1&token=%2").arg(api).arg(token);
+    QString url = QString("https://api81.autofarmer.net/cgi-bin/autofarmer_1_1.cgi?api=%1&token=%2").arg(api).arg(token);
     LOGD << "url: " << url;
 
     bodyData["device_info"] = deviceInfo;
@@ -220,30 +220,30 @@ bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const cha
     CkPrivateKey privKey;
 
     // Load any type of certificate (.cer, .p7b, .pem, etc.) by calling LoadFromFile.
-    success = cert.LoadPem("-----BEGIN CERTIFICATE-----\
-                           MIID/zCCAuegAwIBAgIDEAACMA0GCSqGSIb3DQEBCwUAMHcxCzAJBgNVBAYTAlVT\
-                           MRMwEQYDVQQIDApTb21lLVN0YXRlMRcwFQYDVQQKDA5BdXRvRmFybWVyIEx0ZDET\
-                           MBEGA1UEAwwKQXV0b0Zhcm1lcjElMCMGCSqGSIb3DQEJARYWY2FAYXBpNS5hdXRv\
-                           ZmFybWVyLm5ldDAeFw0yMTA1MjQxMDA1MzlaFw0zMTA1MjIxMDA1MzlaMIGEMQsw\
-                           CQYDVQQGEwJVUzEcMBoGA1UECBMTU3RhdGUgb3IgUHJvdmlkZW5jZTEQMA4GA1UE\
-                           ChMHQ29tcGFueTEcMBoGA1UEAxMTYXBpNS5hdXRvZmFybWVyLm5ldDEnMCUGCSqG\
-                           SIb3DQEJARYYYXBpNUBhcGk1LmF1dG9mYXJtZXIubmV0MIIBIjANBgkqhkiG9w0B\
-                           AQEFAAOCAQ8AMIIBCgKCAQEAzfma8uGKiAfZFI3/iZR4ih5KGDMkwklLMJy9hmwx\
-                           7ahAcn8G1QlJ1U4pYNCnC/Qp20YE0ZCm1ieVcKW+2lp2Xu1kFvuM8L+SBS8qzWLW\
-                           Ih0eQh271qkiGSvDSeMkynhqg0VjQJPtRT+fVSnT1K7aGgD1SNQgQRI0LBj3YYBN\
-                           6pbqhChKVIahot4d8NfpzITWt92bPFGkZYo1EmLc401Qrzpg+Mko5Mz4LPTqT4wt\
-                           NUY2BU22I6jyfWoPZuZo3nJuhRNBbXfx7oDingzKOnIdOkFaMd5XuSa+LJRHG/x1\
-                           M9dQ8CjOdZ8sezs57Gi57QpPzmGxW7JkDn2vPXHnSqsJDQIDAQABo4GFMIGCMAkG\
-                           A1UdEwQCMAAwHQYDVR0OBBYEFPjyjVLERrpY+29eLiAv5k/5o01iMB8GA1UdIwQY\
-                           MBaAFKRMljQCPs9Gu2XoevZO7VgIap5lMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6\
-                           Ly93d3cueW91cmRvbWFpbi5jb20vY2EvY3JsLnBlbTANBgkqhkiG9w0BAQsFAAOC\
-                           AQEAQXsWhfFlWGz6DcYVcu8Bc1FVrXtJ0a6zU9M08SBsM7ZiwOqz7c8XY7eG2ipx\
-                           uPJ0oL5QwKxbRCS/m+eA/tvzTeotzwd5B/gd4sYt1AWlcinNwDr0413Op5Ac0a1d\
-                           gYgZfx5nD7z+Uklyn+vkVPLA4PbjUGbJ35q1SDHL2KioZPjTEQ6QTtrT+binGPCD\
-                           wXyn+NN9ctv86c2Oq1bbZrXkPVzdSTSLlT0wphDBRZ3hYPdyfHdh6JbVFnwtY6TU\
-                           U8svoBNEI7pSheciY0ZWhayfiBGKfDO7o1a3PWlWjRJ5ohg8Gixc8/uo3O+fp2SV\
-                           P9eVv1MXwMJYNiKD1EZI9EYniQ==\
-                           -----END CERTIFICATE-----");
+    success = cert.LoadPem("-----BEGIN CERTIFICATE-----\n"
+                           "MIIEHDCCAwSgAwIBAgIDEAACMA0GCSqGSIb3DQEBCwUAMIGMMQswCQYDVQQGEwJV\n"
+                           "UzETMBEGA1UECAwKU29tZS1TdGF0ZTEhMB8GA1UECgwYYXBpODEuYXV0b2Zhcm1l\n"
+                           "ci5uZXQgTHRkMR0wGwYDVQQDDBRhcGk4MS5hdXRvZmFybWVyLm5ldDEmMCQGCSqG\n"
+                           "SIb3DQEJARYXY2FAYXBpODEuYXV0b2Zhcm1lci5uZXQwHhcNMjExMDA0MDI0NDMx\n"
+                           "WhcNMzExMDAyMDI0NDMxWjCBizELMAkGA1UEBhMCVVMxHDAaBgNVBAgTE1N0YXRl\n"
+                           "IG9yIFByb3ZpZGVuY2UxEDAOBgNVBAoTB0NvbXBhbnkxHTAbBgNVBAMTFGFwaTgx\n"
+                           "LmF1dG9mYXJtZXIubmV0MS0wKwYJKoZIhvcNAQkBFh5tb2JpbGVhcHBAYXBpODEu\n"
+                           "YXV0b2Zhcm1lci5uZXQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCs\n"
+                           "sTW157pb0gGIEk85ctrp7Ou0YWnaBJEFsB5GKzR9R6WteJukx4bi5dZG9XbnDIT2\n"
+                           "k1wycZjEoF3QlTJNLy7wRmUCGpexhxboG7vYOLY2fKRGqZt1xmz3gW92MyOGP6tF\n"
+                           "7HdtshHEACPNS0nJUf/NNdNz0DKdhC6sllhw29V1f3kgozYzpw4Ml2Jgx95/wOej\n"
+                           "ZWnB957Sl+dbi4j68RnrNqujxs2vCpAfiX8C99OXtA8xXn2Edrceh6WzG47I1Fze\n"
+                           "nYCzwBQr4Uh/b7/0ONAiwi09+dip0him2UVkFyOL5CIVbz3B5z69r01fEGVqiJxk\n"
+                           "Gy2Sdl+IT2ZBePadFZSjAgMBAAGjgYUwgYIwCQYDVR0TBAIwADAdBgNVHQ4EFgQU\n"
+                           "80m4EkOkNdZB3mBL2UjnwqFYhXQwHwYDVR0jBBgwFoAU9IzMtFOJVdqPvm1Hfv4M\n"
+                           "C6m8WEQwNQYDVR0fBC4wLDAqoCigJoYkaHR0cDovL3d3dy55b3VyZG9tYWluLmNv\n"
+                           "bS9jYS9jcmwucGVtMA0GCSqGSIb3DQEBCwUAA4IBAQBB2gAlD2lHGvkSet1uTmLq\n"
+                           "vDtosXEbXoCguHAY+poVumN9e0p4M4ue6y27QyT7pyY/YGbsFKYpYKHUcqqtNiNW\n"
+                           "jErRc0ifLJ2OILKggWILp+QwyotJLCHVrXmrbYIMzgM7PD07lzgx+1IYrp9UycnA\n"
+                           "2TIjclPaLmFtIy6eH9xvicmqRlcrm68gu0fC/cL7aMP1WW3rBF9Oz+ZqPU+7FcyU\n"
+                           "XVvAiM+frVcgnm4M0wnc1QLupkz/myWC48+gXZH6QRSbXEKVZd1TqUxpD2+XgIPy\n"
+                           "EgwEqV8GAw0gyHgol8RnE/r3mIC9vM0pjxZgaUWOJJIT/yWnJ3e8ZJr/1YoOHP4u\n"
+                           "-----END CERTIFICATE-----");
     if (success != true) {
         LOGD <<"append cert error: " << cert.lastErrorText();
         return false;
@@ -252,34 +252,34 @@ bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const cha
     // Load the private key.
     CkBinData bd;
     success = bd.LoadFile("/Users/phongdang/Temp/mobileapp@cpp.autofarmer.xyz/mobileapp.key");
-    success = privKey.LoadEncryptedPem("-----BEGIN PRIVATE KEY-----\
-                                       MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDN+Zry4YqIB9kU\
-                                       jf+JlHiKHkoYMyTCSUswnL2GbDHtqEByfwbVCUnVTilg0KcL9CnbRgTRkKbWJ5Vw\
-                                       pb7aWnZe7WQW+4zwv5IFLyrNYtYiHR5CHbvWqSIZK8NJ4yTKeGqDRWNAk+1FP59V\
-                                       KdPUrtoaAPVI1CBBEjQsGPdhgE3qluqEKEpUhqGi3h3w1+nMhNa33Zs8UaRlijUS\
-                                       YtzjTVCvOmD4ySjkzPgs9OpPjC01RjYFTbYjqPJ9ag9m5mjecm6FE0Ftd/HugOKe\
-                                       DMo6ch06QVox3le5Jr4slEcb/HUz11DwKM51nyx7OznsaLntCk/OYbFbsmQOfa89\
-                                       cedKqwkNAgMBAAECggEAD4drDDa+6ASXdDpEcs3zzI3+DhcFBXTbK14V1+WeWgme\
-                                       WkODc1pQ67kJ25e/kGInKbX8tQQP4AN5+9UzL2k0lXGWYzkx5hC7ZJKqynNSK55A\
-                                       YsG1ILj9riIjhhWO94jelukLU5oTgG4MiDIwG0/Xd7BszcHYcK97qXt0YzB2L2Jw\
-                                       s+mJMhmq/aV3h0EKFFN1tzcQL5GvioBEBRGvzMHNzKmLHDBtjF6zB+qDGMCd6qaW\
-                                       piWRID36MLLQ4JDE5aES3Wlc0jmIa0ZqigpB6QM8UBfqJpV6O3F5ABU1bS/RJ1iL\
-                                       0EI7u60xub75auPRtBwLsIUsSEEzWZIzP63GqB03wQKBgQD2XbjiTQ1IjUU1YA7z\
-                                       dyoFUpnIZ9IjPOR60ctdRJE9pyMLbXYb3cFsdFaY++FC77NaVeCb9JILAkfcgx57\
-                                       kQZWW+Dw/wNsAWoxGL0X5xXvDSqLBUBQjvR48u8ItSeXM9WCCR34FPlwdCgP1A8s\
-                                       QAM7LN8IrekbtltSxYh0LuQSUQKBgQDWB4sRa1+Xz8ieIIg7iNPLnAp/2OifxQYs\
-                                       YBu6WeXbdzVyx5rgA4+XmxwQL6xvTzx5Ghg4m2v0wvGfJ+EimH+aBuK4SGhDJrYg\
-                                       bN3r38LnzJrCnC+7KWH3OGQkbHdhv3c0W/pp46FcitjDuQ5yr5RULJRI9gnBpYMM\
-                                       8bgbmtM//QKBgB+jKXrmKi6G9bxE+aaKRvsoAFeb/YBI8Y5UIql3hK9GJ1nwVJp/\
-                                       f7dNuVEsB2FxJrcTECT240pGoLPQorl7hjTQ17IbDXVxORHU+3N2WXq5Vh1EL14o\
-                                       /XwKtmeH2+2u2lw4j4CsMNwgDoT51nj4P3H58SpMKwNEB7Y5Z6yD2QYBAoGBAKjJ\
-                                       DBfxqFJNb3WcTDM/BV+lr/YAtfsBYovuQw+jw4xep0zcMrwEsuGpVelB32dsglEy\
-                                       jfVeRDWi4u9TgM1KnB543aTcnTSPu8M4d46DSO6KQWXFzDJ6QSK4WukKjN8OIlCt\
-                                       VH7bH66eZLF9J/KzmnMDMPGU7j7DauTzXvCOGZh1AoGBAL3dQV3Iu+j2eDWSeYBg\
-                                       PnytU501OlVXptVmwF68TuGB83lpfV5ZPcAjFI7g1Gpuo3Y6L1PgYU/hN7HUdXWg\
-                                       +DAqNa/Tm2vA5rs484+aNpXZo7rjf7BRZfOagEGrprCwHRDaZB73OnZMBrMy6YSg\
-                                       zTmmDl4Q3CimkfVVa6Kyv9Re\
-                                       -----END PRIVATE KEY-----","api5");
+    success = privKey.LoadEncryptedPem("-----BEGIN PRIVATE KEY-----\n"
+                                       "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCssTW157pb0gGI\n"
+                                       "Ek85ctrp7Ou0YWnaBJEFsB5GKzR9R6WteJukx4bi5dZG9XbnDIT2k1wycZjEoF3Q\n"
+                                       "lTJNLy7wRmUCGpexhxboG7vYOLY2fKRGqZt1xmz3gW92MyOGP6tF7HdtshHEACPN\n"
+                                       "S0nJUf/NNdNz0DKdhC6sllhw29V1f3kgozYzpw4Ml2Jgx95/wOejZWnB957Sl+db\n"
+                                       "i4j68RnrNqujxs2vCpAfiX8C99OXtA8xXn2Edrceh6WzG47I1FzenYCzwBQr4Uh/\n"
+                                       "b7/0ONAiwi09+dip0him2UVkFyOL5CIVbz3B5z69r01fEGVqiJxkGy2Sdl+IT2ZB\n"
+                                       "ePadFZSjAgMBAAECggEAZ9QH8f2IG2qxRwmTHnxCyICM2p/zD4TNWLkiCpgxb91i\n"
+                                       "7GBmW/Um0UbUxUcSHSp2yvWgaifIbPfqT91UJ/nlY8s/MbuhVrhc+mKqVv8J9sqL\n"
+                                       "znxtHquVml31EQEAK9gd9uWMjKSSb+CRpf3NOECX5t6k6q3TsMbndRbTx880kPZ9\n"
+                                       "ZMyjzqhFFiKQLW73/P5qz4MlHoyNTGuj9EEqYmhvZ+BJ6RMxoBgAxbo/MeYVRm/m\n"
+                                       "fb7GWvtdTCabaTiNhtoB3emSiq5RSZCSkF3oXl2IFF99jLbWh2Q5OYw71vPAmwjk\n"
+                                       "5zlcptVbBeNI+7CNXCsgiHwL04XDXrVeLWdnb6Nw2QKBgQDbLdvIwzveOETFnbBx\n"
+                                       "XtKdTpEIanD2brvgmnUdeeA00VhKl16+2nE0xVq6L5qJw5+3aNCOT7dcvshIaRsn\n"
+                                       "6sLDjCROp29otPG5t5oloR7S9l+fW32NjA/AbWoU43DPcPG4F3O+RyByHT+tW0wg\n"
+                                       "gop14oqL1WRVWlIKuqRAFNcafQKBgQDJtBvqpzutGe1PQoCpUsKKgkUKQIW6zXsn\n"
+                                       "d5fV2xUofE5jYOYbh7kMx5q/uyenoNY01QA6d+824LMveTwY/FWrYl5fgXgm7V6x\n"
+                                       "q3Ixx7dbCSKeOtDWPaXboIMh9GICYZx3T2TpfUV3ErPjuEMOoeMoTuyA3eBWsqco\n"
+                                       "ENDzyrV1nwKBgQCZhBpQGScCs+i/fX6LOb5NPi1pdpxejxr661Sia631cLflrvZG\n"
+                                       "uVvXeW/dvuAAJEvnO/vv4bfttxczWKMTp2P5cVww1ye6cBprWUUXnC2p17UMOhnL\n"
+                                       "ndGel0RZEyD9uv8jURHZsZnxM7lZI/xDPQvcG+usm69l9RhHuYi39aDgRQKBgQCz\n"
+                                       "XZXhsntP8JlmfUX6zNyw3S1V85C4UFfu/duo0hzblscCer3Fx4jYg3vqehzGZTF3\n"
+                                       "Y97DH7o6+9B8K/w0X9gzAtPXbEOTokwuBL8U43v62YHOYZEqo0Glr/RMsoyhf3nr\n"
+                                       "Y0/ijoLCY4BSxZ3kGjPtuVl5M1V244HgECwwT5fUEwKBgQDO3v/bCmf5D9IABsFA\n"
+                                       "q9wOixh9rh1i9wzl04iXAdufkYnH1owefmOyjU7XMbbLQpZH0VSRq+W8yxOcRXR0\n"
+                                       "ndct4OmPtLZJW628u7eZiEwtfQT0vAChvqsSulDd9pZz+vD6U1k2Wa6LgvvFuhOk\n"
+                                       "7igmuY9QNP4zIKztizrPuiSaqQ==\n"
+                                       "-----END PRIVATE KEY-----","7mnBBM9aX9nkD8Sq");
     if (success != true) {
         LOGD <<"load key error: " << privKey.lastErrorText();
         return false;
@@ -381,7 +381,7 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer, QString androidID)
     json.insert("limit", 20);
     json.insert("android_id", androidID);
 
-    QByteArray jsonData = QJsonDocument(json).toJson();
+    QByteArray jsonData = QJsonDocument(json).toJson(QJsonDocument::Compact);
 
     CkHttpRequest req;
     CkHttp http ;
@@ -553,7 +553,7 @@ void WebAPI::getJamineDefinations(QString &definations)
 
 void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 {
-    QByteArray defArrStr = QJsonDocument(defArr).toJson();
+    QByteArray defArrStr = QJsonDocument(defArr).toJson(QJsonDocument::Compact);
     LOGD << "";
     QString url = "https://api4.autofarmer.xyz/api4/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
@@ -585,7 +585,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
 
     QFile jsonFile(bkFileName);
     jsonFile.open(QFile::WriteOnly);
-    jsonFile.write(defArrStr);
+    jsonFile.write(QJsonDocument(defArr).toJson());
     jsonFile.close();
 #endif
 
