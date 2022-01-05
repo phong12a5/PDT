@@ -10,6 +10,7 @@
 #include <QImage>
 #include <QDir>
 #include <iostream>
+#include <QSettings>
 
 /*[android.view.accessibility.AccessibilityNodeInfo@a287;
  * boundsInParent: Rect(0, 0 - 126, 38);
@@ -47,14 +48,9 @@ class ASBLTNode : public QObject {
 
 public:
     explicit ASBLTNode(QString nodeStr) {
-        QStringList listProp = nodeStr.split(";");
-        foreach(QString pair, listProp) {
-            QStringList map = pair.split(": ");
-            if(map.length() == 2) {
-                QString propName = map.at(0).simplified();
-                QString value = map.at(1);
-                this->setProperty(propName.toLocal8Bit().data(),QVariant(value));
-            }
+        QJsonObject node = QJsonDocument::fromJson(nodeStr.toLocal8Bit()).object();
+        foreach(QString key, node.keys()) {
+            this->setProperty(key.toLocal8Bit().data(),QVariant(node.value(key)));
         }
     }
 
@@ -258,7 +254,7 @@ signals:
 
 private:
     static AppModel* m_instance;
-
+    QSettings* settings;
     QList<QObject*> m_listLogRecord;
     QMap<QString, QJsonObject> m_definationMap;
     QString m_androidID;

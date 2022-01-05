@@ -13,8 +13,8 @@ ListView {
         border.width: 2
         border.color: "blue"
         width: parent.width
-        height: root.showByUknownPage == false? 500 : (modelData.page === "PAGE_UNKNOWN"? 500 : 0)
-        visible: root.showByUknownPage == false? true : modelData.page === "PAGE_UNKNOWN"
+        height: root.showByUknownPage == false? 500 : (modelData.page === "SCREEN_UNKNOWN"? 500 : 0)
+        visible: root.showByUknownPage == false? true : modelData.page === "SCREEN_UNKNOWN"
         clip: true
 
         PText{
@@ -73,7 +73,6 @@ ListView {
                     text: modelData.message
                     width: parent.width
                     height: contentHeight
-                    Component.onCompleted: console.log("onCompleted: " + text)
                 }
             }
         }

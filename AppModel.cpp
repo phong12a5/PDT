@@ -13,8 +13,7 @@ AppModel* AppModel::m_instance = nullptr;
 
 AppModel::AppModel(QObject *parent) : QObject(parent)
 {
-    m_androidID = DEVICE_ID;
-
+    settings = new QSettings("PDT","PDT");
     QDir().mkdir(QDir::currentPath() + "/images");
     LOGD << "Created";
 }
@@ -44,13 +43,17 @@ QStringList AppModel::listLanguage() const
 
 QString AppModel::androidID() const
 {
-    return m_androidID;
+    QString android_id =  settings->value("android_id").toString();
+    if(android_id.isNull() || android_id.isEmpty()) {
+        return "0000000000";
+    }
+    return settings->value("android_id").toString();
 }
 
 void AppModel::setAndroidID(QString data)
 {
-    if(data != m_androidID) {
-        m_androidID = data;
+    if(data != settings->value("android_id").toString()) {
+        settings->setValue("android_id", data);
         emit androidIDChanged();
     }
 }
@@ -164,10 +167,10 @@ void AppModel::updateJamineDefinations(QString appName, QString pageID, QString 
 void AppModel::updateJamineKeyword(QString appName, QString pageID, QString language, QList<QObject *> nodeList)
 {
     LOGD << "appName: " << appName << " -- pageID: " << pageID << " -- langCode: " << language << " -- nodeList: " << nodeList.length();
-    if(pageID == "PAGE_UNKNOWN") {
-        LOGD << "Reject PAGE_UNKNOWN";
+    if(pageID == "SCREEN_UNKNOWN") {
+        LOGD << "Reject SCREEN_UNKNOWN";
         QMessageBox Msgbox;
-        Msgbox.setText("Reject PAGE_UNKNOWN!");
+        Msgbox.setText("Reject SCREEN_UNKNOWN!");
         Msgbox.exec();
         return;
         return;
