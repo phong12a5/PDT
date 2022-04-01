@@ -148,9 +148,9 @@ void AppModel::updateJamineDefinations(QString appName, QString pageID, QString 
             evidenceItem.insert("text",static_cast<ASBLTNode*>(nodeList.at(i))->text());
             evidenceItem.insert("contentDescription",static_cast<ASBLTNode*>(nodeList.at(i))->contentDescription());
             evidenceItem.insert("className",static_cast<ASBLTNode*>(nodeList.at(i))->className());
-            evidenceItem.insert("clickable",static_cast<ASBLTNode*>(nodeList.at(i))->clickable() == "true"? true : false);
-            evidenceItem.insert("checked",static_cast<ASBLTNode*>(nodeList.at(i))->checked() == "true"? true : false);
-            evidenceItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected() == "true"? true : false);
+            evidenceItem.insert("clickable",static_cast<ASBLTNode*>(nodeList.at(i))->clickable());
+            evidenceItem.insert("checked",static_cast<ASBLTNode*>(nodeList.at(i))->checked());
+            evidenceItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected());
             newEvidence.append(evidenceItem);
         }
         if(!arrEdidenceByLange.contains(newEvidence))
@@ -184,9 +184,9 @@ void AppModel::updateJamineKeyword(QString appName, QString pageID, QString lang
             keywordItem.insert("text",static_cast<ASBLTNode*>(nodeList.at(i))->text());
             keywordItem.insert("contentDescription",static_cast<ASBLTNode*>(nodeList.at(i))->contentDescription());
             keywordItem.insert("className",static_cast<ASBLTNode*>(nodeList.at(i))->className());
-            keywordItem.insert("clickable",static_cast<ASBLTNode*>(nodeList.at(i))->clickable() == "true"? true : false);
-            keywordItem.insert("checked",static_cast<ASBLTNode*>(nodeList.at(i))->checked() == "true"? true : false);
-            keywordItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected() == "true"? true : false);
+            keywordItem.insert("clickable",static_cast<ASBLTNode*>(nodeList.at(i))->clickable());
+            keywordItem.insert("checked",static_cast<ASBLTNode*>(nodeList.at(i))->checked());
+            keywordItem.insert("selected",static_cast<ASBLTNode*>(nodeList.at(i))->selected());
             keywordItem.insert("keyword",static_cast<ASBLTNode*>(nodeList.at(i))->keyword());
             if(!arrKeywordByLang.contains(keywordItem))
                 arrKeywordByLang.append(keywordItem);

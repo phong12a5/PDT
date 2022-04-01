@@ -41,9 +41,9 @@ class ASBLTNode : public QObject {
     Q_PROPERTY(QString text                 READ text               WRITE setText               NOTIFY textChanged)
     Q_PROPERTY(QString contentDescription   READ contentDescription WRITE setContentDescription NOTIFY contentDescriptionChanged)
     Q_PROPERTY(QString className            READ className          WRITE setClassName          NOTIFY classNameChanged)
-    Q_PROPERTY(QString clickable            READ clickable          WRITE setClickable          NOTIFY clickableChanged)
-    Q_PROPERTY(QString checked              READ checked            WRITE setChecked            NOTIFY checkedChanged)
-    Q_PROPERTY(QString selected             READ selected           WRITE setSelected           NOTIFY selectedChanged)
+    Q_PROPERTY(bool clickable               READ clickable          WRITE setClickable          NOTIFY clickableChanged)
+    Q_PROPERTY(bool checked                 READ checked            WRITE setChecked            NOTIFY checkedChanged)
+    Q_PROPERTY(bool selected                READ selected           WRITE setSelected           NOTIFY selectedChanged)
     Q_PROPERTY(QString keyword              READ keyword            WRITE setKeyword            NOTIFY keywordChanged)
 
 public:
@@ -58,18 +58,18 @@ private:
     QString m_text;
     QString m_contentDescription;
     QString m_className;
-    QString m_clickable;
-    QString m_checked  ;
-    QString m_selected ;
+    bool m_clickable;
+    bool m_checked  ;
+    bool m_selected ;
     QString m_keyword;
 
 public:
     QString text() const {return m_text;}
     QString contentDescription() const {return  m_contentDescription;}
     QString className() const { return m_className;}
-    QString clickable() const { return m_clickable;}
-    QString checked  () const { return m_checked  ;}
-    QString selected () const { return m_selected ;}
+    bool clickable() const { return m_clickable;}
+    bool checked  () const { return m_checked  ;}
+    bool selected () const { return m_selected ;}
     QString keyword  () const { return m_keyword ;}
 
     void setText(QString text) {
@@ -87,17 +87,17 @@ public:
         emit classNameChanged();
     }
 
-    void setClickable(QString clickable){
+    void setClickable(bool clickable){
         m_clickable = clickable;
         emit clickableChanged();
     }
 
-    void setChecked  (QString checked){
+    void setChecked  (bool checked){
         m_checked = checked;
         emit checkedChanged();
     }
 
-    void setSelected (QString selected ){
+    void setSelected (bool selected ){
         m_selected = selected;
         emit selectedChanged();
     }
