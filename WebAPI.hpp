@@ -11,8 +11,8 @@
 #define FACEBOOK_APP    "facebook"
 #define INSTAGRAM_APP   "instagram"
 #define COMMON_APP      "common"
-#define LOCAL_UPLOAD    0
-#define LOCAL_FILE      "V2_2021-8-19-15-11.json"
+#define LOCAL_UPLOAD    1
+#define LOCAL_FILE      "definitions.json"
 #define APPNAME         FACEBOOK_APP
 
 class WebAPI : public QObject
@@ -31,7 +31,7 @@ private:
     std::string encryptTimestamp(const std::string &timestamp, const std::string &token);
     std::string decryptTimestamp(const std::string &timestamp, const std::string &token);
     const char * getIv();
-    bool sendRequest(QJsonObject &bodyData, QJsonObject &response, const char *api, QMap<QString, QString> headers);
+    bool sendRequest(QJsonObject &bodyData, QJsonObject &response, const char *api, bool keepBase64 = false);
 public:
     static WebAPI *instance();
 
@@ -40,8 +40,10 @@ private:
 
 public:
     void getJasmineLog(QList<QJsonObject> &dataContainer, QString androidID);
-    void getJamineDefinations(QString& definations);
-    void saveJamineDefinations(QJsonArray& defArr);
+    void getScreenDefinitions(QString& definations);
+    void saveDefinations(QJsonArray& defArr, QString authCode);
+    bool getAuthCode(QString& code) ;
+    bool approveDefinition(QString& code);
     bool upsertDevice();
 
     signals:

@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QMessageBox>
+#include <QGuiApplication>
 
 #define APP_MODEL   AppModel::instance()
 #define APP_CTRL    AppController::instance()
@@ -12,12 +13,9 @@ AppMain::AppMain(QObject *parent) :
     QObject(parent)
 {
     LOGD << "CREATED";
-    if(WEB_API->upsertDevice()) {
-        APP_MODEL->getJamineDefinations();
-    } else {
-        QMessageBox Msgbox;
-        Msgbox.setText("Upser device failed");
-        Msgbox.exec();
+    if(!WEB_API->upsertDevice()) {
+        LOGD << "Upsert failed!";
+        QGuiApplication::quit();
     }
 }
 

@@ -9,6 +9,11 @@
 #include <QDebug>
 #include <AppDefines.h>
 #include <QTextCodec>
+#include <CkZip.h>
+#include <CkZipEntry.h>
+#include <CkBinData.h>
+#include <CkByteData.h>
+#include <WebAPI.hpp>
 
 CkGlobal glob;
 

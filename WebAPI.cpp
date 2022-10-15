@@ -22,12 +22,13 @@
 #include <CkBinData.h>
 #include <CkTask.h>
 #include <QMessageBox>
-
+#include <CkByteData.h>
+#include <CkCompression.h>
 
 #define MODEL AppModel::instance()
 
 static QJsonObject deviceInfo;
-const char * token = "100KMJAPZX62L";
+const char * token = "7111118962";
 
 
 WebAPI* WebAPI::s_instance = nullptr;
@@ -35,9 +36,44 @@ WebAPI* WebAPI::s_instance = nullptr;
 WebAPI::WebAPI(QObject *parent) : QObject(parent)
 {
     // Do nothing
-    deviceInfo["AndroidId"] = "DESKTOP";
-    deviceInfo["IMEI"] = "IMEI";
-    deviceInfo["MacAddress"] = "XXXXXXXXXXX";
+    deviceInfo["AndroidId"]  = "PHONG.DANG_M1_DESKTOP";
+    deviceInfo["AndroidVersion"]  = "30";
+    deviceInfo["BaseBand"]  = "unknown";
+    deviceInfo["ABI"]  = "arm64-v8a";
+    deviceInfo["Board"]  = "walleye";
+    deviceInfo["Bootloader"]  = "mw8998-003.0085.00";
+    deviceInfo["DISPLAY"]  = "RP1A.201005.004.A1";
+    deviceInfo["DeviceName"]  = "Macbook M1";
+    deviceInfo["Dpi"]  = "420";
+    deviceInfo["Fingerprint"]  = "google/walleye/walleye:11/RP1A.201005.004.A1/6934943:user/release-keys";
+    deviceInfo["GLRenderer"]  = QString();
+    deviceInfo["GLVendor"]  = QString();
+    deviceInfo["GoogleSF"]  = "3D603CED23D682BB";
+    deviceInfo["Height"]  = "1794";
+    deviceInfo["Host"]  = "abfarm873";
+    deviceInfo["IMEI"]  = "PHONG.DANG_M1_DESKTOP";
+    deviceInfo["Ip"]  = QString();
+    deviceInfo["MacAddress"]  = "02:00:00:00:00:00";
+    deviceInfo["Manufacturer"]  = "Google";
+    deviceInfo["Model"]  = "DESKTOP";
+    deviceInfo["NetworkCode"]  = QString();
+    deviceInfo["NetworkCountryIso"]  = QString();
+    deviceInfo["NetworkOperator"]  = QString();
+    deviceInfo["OsVersion"]  = QString();
+    deviceInfo["PhoneNumber"]  = QString();
+    deviceInfo["Product"]  = "walleye";
+    deviceInfo["Release"]  = QString();
+    deviceInfo["SerialNumber"]  = QString();
+    deviceInfo["SimSerial"]  = QString();
+    deviceInfo["Ssid"]  = QString();
+    deviceInfo["TimeZone"]  = "GMT+07:00 Timezon id :: Asia/Ho_Chi_Minh";
+    deviceInfo["UUID"]  = QString();
+    deviceInfo["UserAgent"]  = QString();
+    deviceInfo["Width"]  ="1080";
+    deviceInfo["app_type"]  = "autofarmer_app";
+    deviceInfo["app_version_name"]  = "3.1.7";
+    deviceInfo["hasRoot"]  = false;
+    deviceInfo["isSimulator"]  = false;
 }
 
 WebAPI *WebAPI::instance()
@@ -46,6 +82,21 @@ WebAPI *WebAPI::instance()
         s_instance = new WebAPI();
     }
     return s_instance;
+}
+
+static std::string encodeBase64(const char * input) {
+    CkString str;
+    str.put_Utf8(true);
+    str.setString(input);
+    str.base64Encode("utf-8");
+    return str.getString();
+}
+
+static std::string decodeBase64(const char * input) {
+    CkBinData ckstr;
+    ckstr.put_Utf8(true);
+    ckstr.AppendEncoded(input, "base64");
+    return ckstr.getString("utf-8");
 }
 
 std::string hashKey(const std::string &input, int blockSize)
@@ -189,13 +240,15 @@ const char * WebAPI::getIv() {
     return "Congaubeo@123560";
 }
 
-bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const char *api, QMap<QString, QString> headers = QMap<QString,QString>())
+bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const char *api, bool keepBase64)
 {
     bool success = false;
-    QString url = QString("https://api81.autofarmer.net/cgi-bin/autofarmer_1_1.cgi?api=%1&token=%2").arg(api).arg(token);
+    QString url = QString("https://api12x.autofarmer.net/cgi-bin/autofarmer_1_1.cgi?api=%1&token=%2").arg(api).arg(token);
     LOGD << "url: " << url;
+    LOGD << "bodyData: " << bodyData;
 
-    bodyData["device_info"] = deviceInfo;
+    QString deviceInfoString = QJsonDocument(deviceInfo).toJson(QJsonDocument::Compact);
+    bodyData["device_info"] = QString(deviceInfoString.toUtf8().toBase64());//deviceInfo;
     bodyData["token"] = token;
 
     KEY_PAIR keyPair = getDynamicKey();
@@ -211,10 +264,6 @@ bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const cha
     http.put_ReadTimeout(30);
     http.SetRequestHeader("Content-Type", "application/json");
     http.SetRequestHeader("mobile-secret-key", md5(token).toUtf8().data());
-    foreach(QString key , headers.keys()) {
-        LOGD << "Header--> " << key << ":" << headers.value(key);
-        http.SetRequestHeader(key.toUtf8().data(), headers.value(key).toUtf8().data());
-    }
 
     CkCert cert;
     CkPrivateKey privKey;
@@ -328,14 +377,31 @@ bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const cha
                                             if (responseData.contains("data"))
                                             {
                                               QJsonObject server_data = QJsonDocument::fromJson(responseData["data"].toString().toUtf8()).object();
+//                                              LOGD << server_data;
                                                 if (!server_data.isEmpty())
                                                 {
+                                                    if(server_data.contains("success")) {
+                                                        response["success"] = server_data["success"];
+                                                    }
+
+                                                    if(server_data.contains("code")) {
+                                                        response["code"] = server_data["code"];
+                                                    }
+
+                                                    if(server_data.contains("message")) {
+                                                        response["message"] = server_data["message"];
+                                                    }
+
+
                                                     if (server_data.contains("data"))
                                                     {
-                                                        QString data = server_data["data"].toString();
-                                                        server_data["data"] = QString::fromUtf8(QByteArray::fromBase64(data.toUtf8()));
+                                                        if(keepBase64) {
+                                                            response["data"] = server_data["data"];
+                                                        } else {
+                                                            QString data = server_data["data"].toString();
+                                                            response["data"] = QString::fromUtf8(QByteArray::fromBase64(data.toUtf8()));;
+                                                        }
                                                     }
-                                                    response["data"] = server_data;
                                                 }
                                             }
 
@@ -367,6 +433,74 @@ bool WebAPI::sendRequest(QJsonObject &bodyData, QJsonObject &response, const cha
     }
     delete resp;
     return success;
+}
+
+bool WebAPI::getAuthCode(QString& code)
+{
+    CkHttp http;
+    CkHttpRequest req;
+
+    http.put_ConnectTimeout(30);
+    http.put_ReadTimeout(30);
+    http.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    http.SetRequestHeader("captcha", "a");
+
+    req .AddParam("grant_type", "password");
+    req .AddParam("scope", "offline_access openid");
+    req .AddParam("client_id", "admin_autofarmer");
+    req .AddParam("client_secret", "K7gNU3sdo+OL0wNhqoVWhr3g6s1xYv72ol/pe/Unols=");
+    req .AddParam("username", "84326265157");
+    req .AddParam("password", "AutoFarmer2022!@#");
+
+    CkHttpResponse* resp = http.PostUrlEncoded("http://internal.autofarmer.net/connect/token",req);
+    if (http.get_LastMethodSuccess() == false) {
+        LOGD << http.lastErrorText();
+        return false ;
+    } else {
+        QJsonObject responeJson = QJsonDocument::fromJson(resp->bodyStr()).object();
+        LOGD << responeJson;
+        if(responeJson.contains("access_token")) {
+            QString access_token = responeJson["access_token"].toString();
+            if(!access_token.isNull() && !access_token.isEmpty()) {
+                code = access_token;
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+bool WebAPI::approveDefinition(QString &code)
+{
+    QString auth = "Bearer " + code;
+    QString url = "https://internal.autofarmer.net/api/Json/approval-lavender";
+    LOGD << "url: " << url;
+
+
+    QJsonObject jsonReqBody;
+    jsonReqBody["name"] = "Lavender";
+
+    CkHttp http;
+    http.put_ConnectTimeout(30);
+    http.put_ReadTimeout(30);
+    http.SetRequestHeader("Content-Type", "application/json");
+    http.SetRequestHeader("Authorization", auth.toUtf8().data());
+
+
+    CkHttpResponse *resp = http.PostJson(url.toUtf8().data(), QJsonDocument(jsonReqBody).toJson(QJsonDocument::Compact).data());
+
+    if (!http.get_LastMethodSuccess())
+    {
+        LOGD << "Error: " <<  http.lastErrorText();
+    } else {
+        if (resp->bodyStr()) {
+            QJsonObject jsonResponse = QJsonDocument::fromJson(resp->bodyStr()).object();
+            LOGD << resp->bodyStr();
+        } else {
+            LOGD << "error_message", "resp->bodyStr() is NULL";
+        }
+    }
+    delete resp;
 }
 
 
@@ -533,33 +667,47 @@ void WebAPI::getJasmineLog(QList<QJsonObject> &dataContainer, QString androidID)
     LOGD << "DONE";
 }
 
-void WebAPI::getJamineDefinations(QString &definations)
+void WebAPI::getScreenDefinitions(QString &definations)
 {
     LOGD << "";
     QJsonObject bodyData, response;
-    bodyData["action"] = "GetJasmine";
+    bodyData["action"] = "GetLavender";
 
-    if (sendRequest(bodyData, response, "config"))
+    if (sendRequest(bodyData, response, "config", true))
     {
-        QJsonObject server_data = response["data"].toObject();
-        if (server_data.contains("data"))
+        if (response.contains("data"))
         {
-            definations = server_data["data"].toString();
-            return;
+            CkCompression compress;
+            compress.put_Algorithm("bzip2");
+            compress.put_EncodingMode("base64");
+
+            // decompress the BinData.
+            CkByteData uncompressedBytes;
+            compress.DecompressBytesENC(response["data"].toString().toUtf8().data(),uncompressedBytes);
+
+            CkBinData outBinData;
+            outBinData.put_Utf8(true);
+            outBinData.AppendBinary(uncompressedBytes);
+
+            const char *rawString = outBinData.getString("utf-8");
+
+            CkJsonArray definitionArr;
+            definitionArr.put_Utf8(true);
+            if(definitionArr.Load(rawString)) {
+                definations = QString(rawString);
+            }
         }
     }
-    LOGD << "response: " << response;
 }
 
-void WebAPI::saveJamineDefinations(QJsonArray &defArr)
+void WebAPI::saveDefinations(QJsonArray &defArr, QString authCode)
 {
     QByteArray defArrStr = QJsonDocument(defArr).toJson(QJsonDocument::Compact);
-    LOGD << "";
-    QString url = "https://api4.autofarmer.xyz/api4/config?token=496UTSHK4XMCNV1WEYP41K";
     QJsonObject json;
 
 #if LOCAL_UPLOAD
-    QFile bkFile(QString("/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Apps/AutoFarmer.XYZ/Definitions backup/") + LOCAL_FILE);
+//    QFile bkFile(QString("/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Apps/AutoFarmer.XYZ/Definitions backup/") + LOCAL_FILE);
+    QFile bkFile("/Users/phongdang/Workspace/Android/Project/AutoFarmer.App/app/src/main/assets/data/definitions.json");
     if (bkFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         defArrStr = bkFile.readAll();
         QJsonDocument document = QJsonDocument().fromJson(defArrStr);
@@ -576,7 +724,7 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     }
 #else
 
-    QString bkFileName = "/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Apps/AutoFarmer.XYZ/Definitions backup/V2_" + \
+    QString bkFileName = "/Users/" + qgetenv("USER") + "/autofarmer Dropbox/Auto Farmer/Definitions backup/V2_" + \
             QString::number(QDate::currentDate().year()) + "-" + \
             QString::number(QDate::currentDate().month()) + "-" + \
             QString::number(QDate::currentDate().day()) + "-" + \
@@ -589,14 +737,36 @@ void WebAPI::saveJamineDefinations(QJsonArray &defArr)
     jsonFile.close();
 #endif
 
-    QJsonObject bodyData, response;
-    bodyData["action"] = "SaveJasmine";
-    bodyData["jasmine_data"] = QString(defArrStr.toBase64());
+    QString auth = "Bearer " + authCode;
+    QString url = "https://internal.autofarmer.net/api/Json/save-lavender";
 
-    QMap<QString,QString> header;
-    header.insert("save-jasmine-secret-key","0b21335f-f715-40e1-b312-b099cd87ec4e");
-    sendRequest(bodyData, response, "config",header);
-    LOGD << "response: " << response;
+    QJsonObject jsonReqBody;
+    jsonReqBody["name"] = "Lavender";
+    jsonReqBody["data"] = QString(defArrStr.toBase64());
+
+    LOGD << jsonReqBody;
+
+    CkHttp http;
+    http.put_ConnectTimeout(30);
+    http.put_ReadTimeout(30);
+    http.SetRequestHeader("Content-Type", "application/json");
+    http.SetRequestHeader("Authorization", auth.toUtf8().data());
+
+
+    CkHttpResponse *resp = http.PostJson(url.toUtf8().data(), QJsonDocument(jsonReqBody).toJson(QJsonDocument::Compact).data());
+
+    if (!http.get_LastMethodSuccess())
+    {
+        LOGD << "Error: " <<  http.lastErrorText();
+    } else {
+        if (resp->bodyStr()) {
+            QJsonObject jsonResponse = QJsonDocument::fromJson(resp->bodyStr()).object();
+            LOGD << resp->bodyStr();
+        } else {
+            LOGD << "error_message", "resp->bodyStr() is NULL";
+        }
+    }
+    delete resp;
 }
 
 bool WebAPI::upsertDevice()
@@ -607,8 +777,7 @@ bool WebAPI::upsertDevice()
     if (sendRequest(bodyData, response, "config"))
     {
         QJsonObject server_data = response["data"].toObject();
-        LOGD << "server_data: " << server_data;
-        if (server_data["code"].toInt() == 200)
+        if (response["success"].toBool())
         {
             return true;
         }

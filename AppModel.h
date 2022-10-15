@@ -241,7 +241,9 @@ private:
 public:
     Q_INVOKABLE void getLogFromServer();
     Q_INVOKABLE void saveResult();
-    Q_INVOKABLE void getJamineDefinations();
+    Q_INVOKABLE bool publish();
+    Q_INVOKABLE void getScreenDefinitions();
+    Q_INVOKABLE void getLocalScreenDefinitions(QString path);
     Q_INVOKABLE void updateJamineDefinations(QString appName, QString pageID, QString language, QList<QObject*> nodeList);
     Q_INVOKABLE void updateJamineKeyword(QString appName, QString pageID, QString language, QList<QObject*> nodeList);
     Q_INVOKABLE QStringList getListIDComponent(QString pageID, QString language);

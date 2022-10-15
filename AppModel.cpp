@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QDateTime>
 #include <QDir>
+#include <QAbstractButton>
 
 #define DEVICE_ID       "764ac7fc42f75e09"
 
@@ -61,7 +62,7 @@ void AppModel::setAndroidID(QString data)
 void AppModel::insertPageDefinations(QJsonObject pageObj)
 {
     if(!pageObj.isEmpty()) {
-        m_definationMap.insert(pageObj.value("page").toString(),pageObj);
+        m_definationMap.insert(pageObj.value("screen").toString(),pageObj);
         emit listPageIDChanged();
     }
 }
@@ -98,34 +99,65 @@ void AppModel::saveResult()
     }
 
     if(!defArr.isEmpty()) {
-        WebAPI::instance()->saveJamineDefinations(defArr);
+        QString code;
+        WebAPI::instance()->getAuthCode(code);
+        WebAPI::instance()->saveDefinations(defArr, code);
     }
 }
 
-void AppModel::getJamineDefinations()
+bool AppModel::publish()
+{
+    QString code;
+    WebAPI::instance()->getAuthCode(code);
+    return WebAPI::instance()->approveDefinition(code);
+}
+
+void AppModel::getScreenDefinitions()
 {
     QString defStr;
-    WebAPI::instance()->getJamineDefinations(defStr);
+    WebAPI::instance()->getScreenDefinitions(defStr);
     QJsonDocument defDoc = QJsonDocument::fromJson(defStr.toUtf8());
     if(defDoc.isArray()) {
         QJsonArray defArr = defDoc.array();
-        for (int i = 0; i < defArr.size(); i++) {
-            QJsonObject pageObj = defArr.at(i).toObject();
-            if(pageObj.isEmpty()) {
-                QMessageBox Msgbox;
-                Msgbox.setText("Load Jasmine configuration json file failure!" + defArr.at(i).toString());
-                Msgbox.exec();
-            }else {
-                insertPageDefinations(pageObj);
+        if(defArr.size() > 0) {
+            m_definationMap.clear();
+            for (int i = 0; i < defArr.size(); i++) {
+                QJsonObject pageObj = defArr.at(i).toObject();
+                if(!pageObj.isEmpty()) {
+                    LOGD << pageObj;
+                    insertPageDefinations(pageObj);
+                }
+            }
+            LOGD << "Get json successfully with " << m_definationMap.size() << "records";
+            return;
+        }
+    }
+    LOGD << "Get json failed";
+}
+
+void AppModel::getLocalScreenDefinitions(QString path)
+{
+    if(path.startsWith("file://")) path = path.replace("file://", "");
+    LOGD << path;
+    QFile jsonFile(path);
+    if (jsonFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QJsonDocument defDoc = QJsonDocument::fromJson(jsonFile.readAll());
+        if(defDoc.isArray()) {
+            QJsonArray defArr = defDoc.array();
+            if(defArr.size() > 0) {
+                m_definationMap.clear();
+                for (int i = 0; i < defArr.size(); i++) {
+                    QJsonObject pageObj = defArr.at(i).toObject();
+                    if(!pageObj.isEmpty()) {
+                        insertPageDefinations(pageObj);
+                    }
+                }
+                LOGD << "Get json successfully with " << m_definationMap.size() << "records";
+                return;
             }
         }
-    } else {
-        LOGD << "defDoc is not array";
-
-        QMessageBox Msgbox;
-        Msgbox.setText("Load Jasmine configuration json file failure!" + defStr);
-        Msgbox.exec();
     }
+    LOGD << "Get json failed";
 }
 
 void AppModel::updateJamineDefinations(QString appName, QString pageID, QString language, QList<QObject *> nodeList)

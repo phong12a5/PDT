@@ -138,7 +138,7 @@ Rectangle {
         anchors.top: nodeList.bottom
         anchors.topMargin: 20
         anchors.horizontalCenter: parent.horizontalCenter
-        text: info.screenId
+        text: info !== undefined? info.screenId : ""
         onTextChanged: {
             appInput.currentIndex = appModel.indexOf(AppModel.getAppNameByScreenID(text))
         }
